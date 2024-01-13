@@ -1,0 +1,170 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--#region MainWindow Styles-->
+    <Style x:Key="gMain"
+           TargetType="Grid">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#FBED9E"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnMain"
+           TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#FBED9E"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#FBED9E"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="dGridStudents"
+           TargetType="DataGrid">
+        <Style.Setters>
+            <Setter Property="AutoGenerateColumns"
+                    Value="False"/>
+
+            <Setter Property="IsReadOnly"
+                    Value="True"/>
+
+            <Setter Property="CanUserAddRows"
+                    Value="False"/>
+
+            <Setter Property="CanUserDeleteRows"
+                    Value="False"/>
+
+            <Setter Property="CanUserReorderColumns"
+                    Value="False"/>
+
+            <Setter Property="CanUserResizeColumns"
+                    Value="False"/>
+
+            <Setter Property="CanUserResizeRows"
+                    Value="False"/>
+
+            <Setter Property="CanUserSortColumns"
+                    Value="False"/>
+
+            <Setter Property="Background"
+                    Value="#FFF"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#A0A0A0"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0 1.45 0 0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="dGridColumnHeader"
+           TargetType="DataGridColumnHeader">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#FFFFD9"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="Padding"
+                    Value="5 0 0 0"/>
+        </Style.Setters>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region AddEditStudentWindow Styles-->
+    <Style x:Key="txtBlockAddEditStudentWindow"
+           TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="txtBoxAddEditStudentWindow"
+           TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="5 15 5 15"/>
+
+            <Setter Property="Padding"
+                    Value="0 2.5 0 0"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D7D7D7"/>
+        </Style.Setters>
+
+        <Style.Triggers>
+            <Trigger Property="IsFocused"
+                     Value="True">
+                <Setter Property="BorderBrush"
+                        Value="#FACC1F"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="txtBoxAddressAddEditStudentWindow"
+           TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="5 15 5 15"/>
+            
+            <Setter Property="TextWrapping"
+                    Value="Wrap"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D7D7D7"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="dPicAddEditStudentWindow"
+           TargetType="DatePicker">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="5 15 5 15"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D7D7D7"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnAddEditStudentWindow"
+           TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#776900"/>
+
+            <Setter Property="BorderThickness"
+                    Value=".8"/>
+
+            <Setter Property="Background"
+                    Value="#FCFF16"/>
+
+            <Setter Property="Margin"
+                    Value="5 15 5 15"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>
