@@ -38,107 +38,99 @@
 
         <!-- Студенческий билет -->
         <TextBlock Text="№ студенческого билета:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="0"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="0"/>
 
         <TextBox x:Name="txtBoxStudentId"
                  Text="{Binding StudentId}"
+                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
                  
                  Grid.Column="1"
                  Grid.Row="0"/>
         
         <!-- Фамилия студента -->
         <TextBlock Text="Фамилия студента:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="1"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="1"/>
 
         <TextBox x:Name="txtBoxLastName"
                  Text="{Binding LastName}"
+                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
                  
                  Grid.Column="1"
                  Grid.Row="1"/>
 
         <!-- Имя студента -->
         <TextBlock Text="Имя студента:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="2"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="2"/>
 
         <TextBox x:Name="txtBoxFirstName"
                  Text="{Binding FirstName}"
+                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
                  
                  Grid.Column="1"
                  Grid.Row="2"/>
 
         <!-- Отчество студента -->
         <TextBlock Text="Отчество студента:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="3"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="3"/>
 
         <TextBox x:Name="txtBoxMiddleName"
-                 Text="{Binding MiddleName}"
+                 Text="cebccejcsjcnsdk"
+                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
                  
                  Grid.Column="1"
                  Grid.Row="3"/>
 
         <!-- Дата рождения студента -->
         <TextBlock Text="Дата рождения:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="4"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="4"/>
 
         <DatePicker x:Name="dPicBirthDate"
                     SelectedDate="{Binding BirthDate}"
+                    Style="{DynamicResource dPicAddEditStudentWindow}"
                     
                     Grid.Column="1"
                     Grid.Row="4"/>
 
         <!-- Адрес -->
         <TextBlock Text="Адрес:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="5"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="5"/>
 
         <TextBox x:Name="txtBoxAddress"
                  Text="{Binding Address}"
-                 TextWrapping="Wrap"
+                 Style="{DynamicResource txtBoxAddressAddEditStudentWindow}"
                  
                  Grid.Column="1"
                  Grid.Row="5"/>
         
         <!-- Номер телефона -->
         <TextBlock Text="Номер телефона:"
+                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
                    
                    Grid.Column="0"
-                   Grid.Row="6"
-                   
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.Row="6"/>
 
         <xctk:MaskedTextBox x:Name="txtBoxPhoneNumber"
                             Text="{Binding PhoneNumber}"
                             Mask="+7(000)000-00-00"
+                            Style="{DynamicResource txtBoxAddEditStudentWindow}"
                             
                             Grid.Column="1"
                             Grid.Row="6"/>
@@ -146,6 +138,7 @@
         <!-- Кнопки -->
         <Button x:Name="btnSave"
                 Click="btnSave_Click"
+                Style="{DynamicResource btnAddEditStudentWindow}"
                 Content="Сохранить"
                 
                 Grid.Column="0"
@@ -153,6 +146,7 @@
 
         <Button x:Name="btnCancel"
                 Click="btnCancel_Click"
+                Style="{DynamicResource btnAddEditStudentWindow}"
                 Content="Отмена"
                 
                 Grid.Column="1"

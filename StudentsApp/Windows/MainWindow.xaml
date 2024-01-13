@@ -18,7 +18,7 @@
         
         Loaded="Window_Loaded">
 
-    <Grid>
+    <Grid Style="{DynamicResource gMain}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
@@ -32,44 +32,41 @@
         <Button x:Name="btnAdd"
                 Click="btnAdd_Click"
                 Content="+"
+                Style="{DynamicResource btnMain}"
                 
                 Grid.Column="1"
                 Grid.Row="0"/>
 
         <DataGrid x:Name="dgStudents"
-                  
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  CanUserReorderColumns="False"
-                  CanUserResizeColumns="False"
-                  CanUserResizeRows="False"
-                  CanUserSortColumns="False"
+                  Style="{DynamicResource dGridStudents}"
                   
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="2">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№ студенческого билета"
+                <DataGridTextColumn Header="№ студенческого"
+                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
                                     Width="*"
                                     Binding="{Binding StudentId}"/>
 
                 <DataGridTextColumn Header="Фамилия"
+                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
                                     Width="*"
                                     Binding="{Binding LastName}"/>
 
                 <DataGridTextColumn Header="Имя"
+                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
                                     Width="*"
                                     Binding="{Binding FirstName}"/>
 
                 <DataGridTextColumn Header="Отчество"
+                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
                                     Width="*"
                                     Binding="{Binding MiddleName}"/>
 
                 <DataGridTemplateColumn Header="Дата рождения"
+                                        HeaderStyle="{DynamicResource dGridColumnHeader}"
                                         Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -86,10 +83,12 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="Адрес"
+                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
                                     Width="*"
                                     Binding="{Binding Address}"/>
 
                 <DataGridTemplateColumn Header="Телефон"
+                                        HeaderStyle="{DynamicResource dGridColumnHeader}"
                                         Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -100,7 +99,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn HeaderStyle="{DynamicResource dGridColumnHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnEdit"
@@ -110,7 +109,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn HeaderStyle="{DynamicResource dGridColumnHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnDelete"
