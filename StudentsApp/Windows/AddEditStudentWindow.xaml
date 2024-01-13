@@ -1,0 +1,161 @@
+﻿<Window x:Class="StudentsApp.Windows.AddEditStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        
+        x:Name="addEditWindow"
+        
+        Title="{Binding StudentId,
+                StringFormat={}Студент {0}}" 
+        
+        Height="450" 
+        Width="320"
+        
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        
+        Loaded="addEditWindow_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Студенческий билет -->
+        <TextBlock Text="№ студенческого билета:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBox x:Name="txtBoxStudentId"
+                 Text="{Binding StudentId}"
+                 
+                 Grid.Column="1"
+                 Grid.Row="0"/>
+        
+        <!-- Фамилия студента -->
+        <TextBlock Text="Фамилия студента:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBox x:Name="txtBoxLastName"
+                 Text="{Binding LastName}"
+                 
+                 Grid.Column="1"
+                 Grid.Row="1"/>
+
+        <!-- Имя студента -->
+        <TextBlock Text="Имя студента:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBox x:Name="txtBoxFirstName"
+                 Text="{Binding FirstName}"
+                 
+                 Grid.Column="1"
+                 Grid.Row="2"/>
+
+        <!-- Отчество студента -->
+        <TextBlock Text="Отчество студента:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBox x:Name="txtBoxMiddleName"
+                 Text="{Binding MiddleName}"
+                 
+                 Grid.Column="1"
+                 Grid.Row="3"/>
+
+        <!-- Дата рождения студента -->
+        <TextBlock Text="Дата рождения:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="4"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <DatePicker x:Name="dPicBirthDate"
+                    SelectedDate="{Binding BirthDate}"
+                    
+                    Grid.Column="1"
+                    Grid.Row="4"/>
+
+        <!-- Адрес -->
+        <TextBlock Text="Адрес:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="5"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBox x:Name="txtBoxAddress"
+                 Text="{Binding Address}"
+                 TextWrapping="Wrap"
+                 
+                 Grid.Column="1"
+                 Grid.Row="5"/>
+        
+        <!-- Номер телефона -->
+        <TextBlock Text="Номер телефона:"
+                   
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <xctk:MaskedTextBox x:Name="txtBoxPhoneNumber"
+                            Text="{Binding PhoneNumber}"
+                            Mask="+7(000)000-00-00"
+                            
+                            Grid.Column="1"
+                            Grid.Row="6"/>
+
+        <!-- Кнопки -->
+        <Button x:Name="btnSave"
+                Click="btnSave_Click"
+                Content="Сохранить"
+                
+                Grid.Column="0"
+                Grid.Row="7"/>
+
+        <Button x:Name="btnCancel"
+                Click="btnCancel_Click"
+                Content="Отмена"
+                
+                Grid.Column="1"
+                Grid.Row="7"/>
+    </Grid>
+</Window>
