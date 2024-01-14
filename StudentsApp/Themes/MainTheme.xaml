@@ -34,14 +34,6 @@
                 </Setter.Value>
             </Setter>
         </Style.Setters>
-
-        <Style.Triggers>
-            <Trigger Property="IsPressed"
-                     Value="True">
-                <Setter Property="Background"
-                        Value="#C7BC7D"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="dGridStudents"
