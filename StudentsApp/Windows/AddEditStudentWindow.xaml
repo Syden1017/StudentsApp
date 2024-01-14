@@ -86,7 +86,7 @@
                    Grid.Row="3"/>
 
         <TextBox x:Name="txtBoxMiddleName"
-                 Text="cebccejcsjcnsdk"
+                 Text="{Binding MiddleName}"
                  Style="{DynamicResource txtBoxAddEditStudentWindow}"
                  
                  Grid.Column="1"
