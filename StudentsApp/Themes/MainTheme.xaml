@@ -18,7 +18,30 @@
 
             <Setter Property="BorderBrush"
                     Value="#FBED9E"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="FontSize"
+                    Value="16"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style.Setters>
+
+        <Style.Triggers>
+            <Trigger Property="IsPressed"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="#C7BC7D"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="dGridStudents"
@@ -104,6 +127,9 @@
                      Value="True">
                 <Setter Property="BorderBrush"
                         Value="#FACC1F"/>
+
+                <Setter Property="BorderThickness"
+                        Value=".8"/>
             </Trigger>
         </Style.Triggers>
     </Style>
