@@ -47,26 +47,31 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ студенческого"
                                     HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                    CellStyle="{DynamicResource dGridElement}"
                                     Width="*"
                                     Binding="{Binding StudentId}"/>
 
                 <DataGridTextColumn Header="Фамилия"
                                     HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                    CellStyle="{DynamicResource dGridElement}"
                                     Width="*"
                                     Binding="{Binding LastName}"/>
 
                 <DataGridTextColumn Header="Имя"
                                     HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                    CellStyle="{DynamicResource dGridElement}"
                                     Width="*"
                                     Binding="{Binding FirstName}"/>
 
                 <DataGridTextColumn Header="Отчество"
                                     HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                    CellStyle="{DynamicResource dGridElement}"
                                     Width="*"
                                     Binding="{Binding MiddleName}"/>
 
                 <DataGridTemplateColumn Header="Дата рождения"
                                         HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                        CellStyle="{DynamicResource dGridElement}"
                                         Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -84,11 +89,13 @@
 
                 <DataGridTextColumn Header="Адрес"
                                     HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                    CellStyle="{DynamicResource dGridElement}"
                                     Width="*"
                                     Binding="{Binding Address}"/>
 
                 <DataGridTemplateColumn Header="Телефон"
                                         HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                        CellStyle="{DynamicResource dGridElement}"
                                         Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

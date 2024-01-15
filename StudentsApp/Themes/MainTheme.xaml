@@ -64,7 +64,7 @@
                     Value="False"/>
 
             <Setter Property="Background"
-                    Value="#FFF"/>
+                    Value="#FFFFD9"/>
 
             <Setter Property="BorderBrush"
                     Value="#A0A0A0"/>
@@ -85,6 +85,14 @@
 
             <Setter Property="Padding"
                     Value="5 0 0 0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="dGridElement"
+           TargetType="DataGridCell">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#FFFFD9"/>
         </Style.Setters>
     </Style>
     <!--#endregion-->
