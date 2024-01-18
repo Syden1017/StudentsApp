@@ -7,6 +7,7 @@ using System.Windows.Controls;
 
 using StudentsApp.Models;
 using StudentsApp.Windows;
+using System.Collections.Generic;
 
 namespace StudentsApp
 {
@@ -62,6 +63,123 @@ namespace StudentsApp
         {
             LoadDbInDataGrid();
             UpdateDataGrid(dgStudents);
+        }
+
+        /// <summary>
+        /// Поиск студента по ФИО
+        /// </summary>
+        private void txtBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            List<Student> currentStudent = new List<Student>();
+
+            string request = txtBoxSearch.Text.
+                                          Replace(" ", "").
+                                          ToLower();
+
+            currentStudent = _db.Students.Where(s => (s.LastName + 
+                                                      s.FirstName +
+                                                      s.MiddleName).
+                                                           ToLower().
+                                                           Contains(request)).
+                                                           ToList();
+
+            dgStudents.ItemsSource = currentStudent;
+        }
+
+        /// <summary>
+        /// <para>Получение списка годов поступления студентов</para>
+        /// <para>Загрузка списка в ComboBox</para>
+        /// </summary>
+        /// <param name="filterType">ComboBox для загрузки</param>
+        private void LoadAdmissionYearsInComboBox(ComboBox filterType)
+        {
+            List<string> admissionYears = _db.Students.Select(s => s.StudentId).ToList();
+
+            for (int i = 0; i < admissionYears.Count; i++)
+            {
+                admissionYears[i] = admissionYears[i].Split('-')[1];
+            }
+
+            admissionYears = admissionYears.Distinct().OrderBy(y => y).ToList();
+            admissionYears.Insert(0, "Все года");
+
+            try
+            {
+                filterType.Items.Clear();
+            }
+            catch (Exception)
+            {
+                filterType.ItemsSource = null;
+            }
+
+            filterType.ItemsSource = admissionYears;
+            filterType.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// <para>Получение списка годов рождения студентов</para>
+        /// <para>Загрузка списка в ComboBox</para>
+        /// </summary>
+        /// <param name="filterType">ComboBox для загрузки</param>
+        private void LoadBirthYearsInComboBox(ComboBox filterType)
+        {
+            List<string> birthYears = _db.Students.Select(s => s.BirthDate.Year.ToString()).
+                                                   Distinct().
+                                                   OrderBy(y => y).
+                                                   ToList();
+
+            birthYears.Insert(0, "Все года");
+
+            try
+            {
+                filterType.Items.Clear();
+            }
+            catch (Exception)
+            {
+                filterType.ItemsSource = null;
+            }
+
+            filterType.ItemsSource = birthYears;
+            filterType.SelectedIndex = 0;
+        }
+
+        // Фильтр по году рождения и по году поступления
+        const int FILTER_BY_ADMISSION_YEAR = 1;
+        const int FILTER_BY_BIRTH_YEAR = 2;
+
+        private void cmbBoxFilterField_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cmbBoxFilterField.SelectedIndex)
+            {
+                // Фильтр по году поступления
+                case FILTER_BY_ADMISSION_YEAR:
+                    LoadAdmissionYearsInComboBox(cmbBoxFilterType);
+                    break;
+
+                // Фильтр по году рождения
+                case FILTER_BY_BIRTH_YEAR:
+                    LoadBirthYearsInComboBox(cmbBoxFilterType);
+                    break;
+
+                // Поле фильтра не выбрано
+                default:
+                    break;
+            }
+        }
+
+        private void cmbBoxFilterType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbBoxSortField_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbBoxSortType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         /// <summary>

@@ -3,7 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-
+using System.Windows.Controls;
+using System.Windows.Media;
 using StudentsApp.Models;
 
 namespace StudentsApp.Windows
@@ -39,6 +40,23 @@ namespace StudentsApp.Windows
         }
 
         /// <summary>
+        /// Валидация TextBox в соответствии с шаблоном
+        /// </summary>
+        /// <param name="textBox">Изменяемый TextBox</param>
+        /// <param name="regexPattern">Шаблон для проверки</param>
+        private static void ValidateText(TextBox textBox, string regexPattern)
+        {
+            if (Regex.IsMatch(textBox.Text, regexPattern))
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Green;
+            }
+        }
+
+        /// <summary>
         /// Загрузка окна
         /// </summary>
         private void addEditWindow_Loaded(object sender, RoutedEventArgs e)
@@ -47,6 +65,44 @@ namespace StudentsApp.Windows
             {
                 dPicBirthDate.SelectedDate = new DateTime(2000, 1, 1);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void txtBoxStudentId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateText(txtBoxStudentId, @"^\d{3}-\d{2}$");
+        }
+
+        private void txtBoxLastName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateText(txtBoxLastName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
+        }
+
+        private void txtBoxFirstName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateText(txtBoxFirstName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
+        }
+
+        private void txtBoxMiddleName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateText(txtBoxMiddleName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
+        }
+
+        private void dPicBirthDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateText(txtBoxAddress, "");
+        }
+
+        private void txtBoxPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateText(txtBoxPhoneNumber, @"^9\d{9}$");
         }
 
         /// <summary>

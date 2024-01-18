@@ -9,10 +9,10 @@
         Title="Список студентов"
         
         MinHeight="450" 
-        MinWidth="800"
+        MinWidth="900"
         
         Height="450" 
-        Width="800"
+        Width="900"
         
         WindowStartupLocation="CenterScreen"
         
@@ -28,6 +28,131 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <!-- Панель поиска, фильтрации и сортировки -->
+        <Grid Grid.Column="0"
+              Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Поиск -->
+            <xctk:WatermarkTextBox x:Name="txtBoxSearch"
+                                   Watermark="Поиск &#128269;"
+                                   HorizontalContentAlignment="Right"
+                                   
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   
+                                   TextChanged="txtBoxSearch_TextChanged"/>
+            
+            <!-- Фильтр -->
+            <Grid Grid.Column="1"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Поле:"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxFilterField"
+                          SelectionChanged="cmbBoxFilterField_SelectionChanged"
+                          SelectedIndex="0"
+                          
+                          Grid.Column="1"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Не выбрано"/>
+                        <TextBlock Text="Год поступление"/>
+                        <TextBlock Text="Год рождения"/>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock Text="Значение:"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           
+                           Grid.Column="2"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxFilterType"
+                          SelectionChanged="cmbBoxFilterType_SelectionChanged"
+                          SelectedIndex="0"
+                          
+                          Grid.Column="3"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Не задано"/>
+                    </ComboBox.Items>
+                </ComboBox>
+            </Grid>
+            
+            <!-- Сортировка -->
+            <Grid Grid.Column="2"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Поле:"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxSortField"
+                          SelectionChanged="cmbBoxSortField_SelectionChanged"
+                          SelectedIndex="0"
+                          
+                          Grid.Column="1"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Не выбрано"/>
+                        <TextBlock Text="# студенческого билета"/>
+                        <TextBlock Text="Фамилия"/>
+                        <TextBlock Text="Имя"/>
+                        <TextBlock Text="Отчество"/>
+                        <TextBlock Text="Дата рождения"/>
+                        <TextBlock Text="Адрес"/>
+                        <TextBlock Text="Телефон"/>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock Text="Тип:"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           
+                           Grid.Column="2"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxSortType"
+                          SelectionChanged="cmbBoxSortType_SelectionChanged"
+                          SelectedIndex="0"
+                          
+                          Grid.Column="3"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Не задан"/>
+                        <TextBlock Text="По возрастанию"/>
+                        <TextBlock Text="По убыванию"/>
+                    </ComboBox.Items>
+                </ComboBox>
+            </Grid>
+        </Grid>
 
         <Button x:Name="btnAdd"
                 Click="btnAdd_Click"
@@ -87,11 +212,18 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Адрес"
-                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                    CellStyle="{DynamicResource dGridElement}"
-                                    Width="*"
-                                    Binding="{Binding Address}"/>
+                <DataGridTemplateColumn Header="Адрес"
+                                        HeaderStyle="{DynamicResource dGridColumnHeader}"
+                                        Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Address}"
+                                     IsReadOnly="True"
+                                     TextWrapping="Wrap"
+                                     Background="#FFFFD9"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn Header="Телефон"
                                         HeaderStyle="{DynamicResource dGridColumnHeader}"
@@ -101,7 +233,8 @@
                         <DataTemplate>
                             <xctk:MaskedTextBox Text="{Binding PhoneNumber}"
                                                 Mask="+7(000)000-00-00"
-                                                IsReadOnly="True"/>
+                                                IsReadOnly="True"
+                                                Background="#FFFFD9"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
