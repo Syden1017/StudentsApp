@@ -153,7 +153,7 @@
 
         <Button x:Name="btnCancel"
                 Click="btnCancel_Click"
-                Style="{DynamicResource btnAddEditStudentWindow}"
+                Style="{DynamicResource btnAddEditStudentWindowPrimary}"
                 Content="Отмена"
                 
                 Grid.Column="1"

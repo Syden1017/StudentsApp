@@ -192,5 +192,14 @@
             </Setter>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="btnAddEditStudentWindowPrimary"
+           TargetType="Button"
+           BasedOn="{StaticResource btnAddEditStudentWindow}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#F6F6F6"/>
+        </Style.Setters>
+    </Style>
     <!--#endregion-->
 </ResourceDictionary>

@@ -48,11 +48,11 @@ namespace StudentsApp.Windows
         {
             if (Regex.IsMatch(textBox.Text, regexPattern))
             {
-                textBox.BorderBrush = Brushes.Red;
+                textBox.BorderBrush = Brushes.Green;
             }
             else
             {
-                textBox.BorderBrush = Brushes.Green;
+                textBox.BorderBrush = Brushes.Red;
             }
         }
 
@@ -68,38 +68,56 @@ namespace StudentsApp.Windows
         }
 
         /// <summary>
-        /// 
+        /// Изменение текста TextBox
         /// </summary>
         private void txtBoxStudentId_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateText(txtBoxStudentId, @"^\d{3}-\d{2}$");
         }
 
+        /// <summary>
+        /// Изменение текста TextBox
+        /// </summary>
         private void txtBoxLastName_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateText(txtBoxLastName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
         }
 
+        /// <summary>
+        /// Изменение текста TextBox
+        /// </summary>
         private void txtBoxFirstName_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateText(txtBoxFirstName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
         }
 
+        /// <summary>
+        /// Изменение текста TextBox
+        /// </summary>
         private void txtBoxMiddleName_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateText(txtBoxMiddleName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
         }
 
+        /// <summary>
+        /// Изменение даты DatePicker
+        /// </summary>
         private void dPicBirthDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Изменение текста TextBox
+        /// </summary>
         private void txtBoxAddress_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ValidateText(txtBoxAddress, "");
+            
         }
 
+        /// <summary>
+        /// Изменение текста TextBox
+        /// </summary>
         private void txtBoxPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateText(txtBoxPhoneNumber, @"^9\d{9}$");
