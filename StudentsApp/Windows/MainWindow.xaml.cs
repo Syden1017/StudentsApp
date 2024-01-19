@@ -97,7 +97,7 @@ namespace StudentsApp
 
             for (int i = 0; i < admissionYears.Count; i++)
             {
-                admissionYears[i] = admissionYears[i].Split('-')[1];
+                admissionYears[i] = "20" + admissionYears[i].Split('-')[1];
             }
 
             admissionYears = admissionYears.Distinct().OrderBy(y => y).ToList();
@@ -243,6 +243,47 @@ namespace StudentsApp
             }
 
             UpdateDataGrid(dgStudents);
+        }
+
+        private void cBoxPageCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int currentPage = 1;
+
+            int pageSize = (cBoxPageCount.SelectedIndex + 1) * 5;
+
+            int maxPage = (int)Math.Ceiling((double)_db.Students.Count()  / pageSize);
+
+            var studentsList = _db.Students.ToList().Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+
+            txtBoxCurrentPage.Text = currentPage.ToString();
+            txtBoxTotalPage.Text = maxPage.ToString();
+
+            dgStudents.ItemsSource = studentsList;
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPrev_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txtBoxCurrentPage_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEnd_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

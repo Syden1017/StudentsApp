@@ -42,7 +42,7 @@ namespace StudentsApp.Windows
         /// <summary>
         /// Валидация TextBox в соответствии с шаблоном
         /// </summary>
-        /// <param name="textBox">Изменяемый TextBox</param>
+        /// <param name="textBox">TextBox для валидации</param>
         /// <param name="regexPattern">Шаблон для проверки</param>
         private static void ValidateText(TextBox textBox, string regexPattern)
         {
@@ -53,6 +53,35 @@ namespace StudentsApp.Windows
             else
             {
                 textBox.BorderBrush = Brushes.Red;
+            }
+        }
+
+        /// <summary>
+        /// Валидация TextBox на пустую строку
+        /// </summary>
+        /// <param name="textBox">TextBox для валидации</param>
+        private static void ValidateText(TextBox textBox)
+        {
+            if (!string.IsNullOrEmpty(textBox.Text) &&
+                !string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.BorderBrush = Brushes.Green;
+            }
+            else
+            {
+                textBox.BorderBrush = Brushes.Red;
+            }
+        }
+
+        private static void ValidateText(DatePicker datePicker)
+        {
+            if (datePicker.SelectedDate >= new DateTime(2000, 1, 1))
+            {
+                datePicker.BorderBrush = Brushes.Green;
+            }
+            else
+            {
+                datePicker.BorderBrush = Brushes.Red;
             }
         }
 
@@ -96,7 +125,14 @@ namespace StudentsApp.Windows
         /// </summary>
         private void txtBoxMiddleName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ValidateText(txtBoxMiddleName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
+            if (txtBoxMiddleName.Text != string.Empty)
+            {
+                ValidateText(txtBoxMiddleName, @"^[А-ЯA-ZЁ][а-яa-zё]+");
+            }
+            else
+            {
+                txtBoxMiddleName.ClearValue(BorderBrushProperty);
+            }
         }
 
         /// <summary>
@@ -104,7 +140,7 @@ namespace StudentsApp.Windows
         /// </summary>
         private void dPicBirthDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ValidateText(dPicBirthDate);
         }
 
         /// <summary>
@@ -112,7 +148,7 @@ namespace StudentsApp.Windows
         /// </summary>
         private void txtBoxAddress_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            ValidateText(txtBoxAddress);
         }
 
         /// <summary>
@@ -120,7 +156,7 @@ namespace StudentsApp.Windows
         /// </summary>
         private void txtBoxPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ValidateText(txtBoxPhoneNumber, @"^9\d{9}$");
+            ValidateText(txtBoxPhoneNumber, @"^\+7\(9\d{2}\)\d{3}-\d{2}-\d{2}$");
         }
 
         /// <summary>
@@ -204,8 +240,11 @@ namespace StudentsApp.Windows
             #endregion
 
             #region Номер телефона
-            _currentStudent.PhoneNumber = Regex.Replace(_currentStudent.PhoneNumber, @"\D", "");
-            _currentStudent.PhoneNumber = _currentStudent.PhoneNumber.TrimStart('7');
+            if (_currentStudent.PhoneNumber != null)
+            {
+                _currentStudent.PhoneNumber = Regex.Replace(_currentStudent.PhoneNumber, @"\D", "");
+                _currentStudent.PhoneNumber = _currentStudent.PhoneNumber.TrimStart('7');
+            }
 
             if (string.IsNullOrWhiteSpace(_currentStudent.PhoneNumber) ||
                 string.IsNullOrEmpty(_currentStudent.PhoneNumber))

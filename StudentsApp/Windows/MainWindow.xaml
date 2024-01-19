@@ -8,15 +8,17 @@
         
         Title="Список студентов"
         
-        MinHeight="450" 
+        MinHeight="500" 
         MinWidth="900"
         
-        Height="450" 
+        Height="500" 
         Width="900"
         
         WindowStartupLocation="CenterScreen"
         
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        
+        Icon="\Images\1C.png">
 
     <Grid Style="{DynamicResource gMain}">
         <Grid.ColumnDefinitions>
@@ -27,6 +29,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
 
         <!-- Панель поиска, фильтрации и сортировки -->
@@ -205,6 +208,9 @@
                                     <Style TargetType="DatePickerTextBox">
                                         <Setter Property="IsReadOnly"
                                                 Value="True"/>
+
+                                        <Setter Property="Background"
+                                                Value="#FFFFD9"/>
                                     </Style>
                                 </DatePicker.Resources>
                             </DatePicker>
@@ -244,7 +250,8 @@
                         <DataTemplate>
                             <Button x:Name="btnEdit"
                                     Click="btnEdit_Click"
-                                    Content="&#9999;"/>
+                                    Content="&#9999;"
+                                    Cursor="Hand"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -254,11 +261,77 @@
                         <DataTemplate>
                             <Button x:Name="btnDelete"
                                     Click="btnDelete_Click"
-                                    Content="&#10005;"/>
+                                    Content="&#10005;"
+                                    Cursor="Hand"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid Grid.Column="0"
+              Grid.Row="2"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                <TextBlock Text="Выводить по: "/>
+
+                <ComboBox x:Name="cBoxPageCount"
+                          SelectionChanged="cBoxPageCount_SelectionChanged"
+                          Width="80">
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="15"/>
+                    <ComboBoxItem Content="20"/>
+                    <ComboBoxItem Content="25"/>
+                    <ComboBoxItem Content="30"/>
+                </ComboBox>
+
+                <TextBlock Text=" студентов на странице"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button x:Name="btnHome"
+                        Click="btnHome_Click"
+                        Content="&#10074;&#9664;&#9664;"/>
+
+                <Button x:Name="btnPrev"
+                        Click="btnPrev_Click"
+                        Content="&#9664;"/>
+
+                <TextBox x:Name="txtBoxCurrentPage"
+                         TextChanged="txtBoxCurrentPage_TextChanged"
+                         Width="50"
+                         TextAlignment="Center"/>
+
+                <TextBlock Text="/"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                <TextBox x:Name="txtBoxTotalPage"
+                         Width="50"
+                         TextAlignment="Center"
+                         IsReadOnly="True"/>
+
+                <Button x:Name="btnNext"
+                        Click="btnNext_Click"
+                        Content="&#9654;"/>
+
+                <Button x:Name="btnEnd"
+                        Click="btnEnd_Click"
+                        Content="&#9654;&#9654;&#10074;"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

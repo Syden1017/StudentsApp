@@ -105,7 +105,7 @@
                     Value="Center"/>
 
             <Setter Property="HorizontalAlignment"
-                    Value="Center"/>
+                    Value="Right"/>
         </Style.Setters>
     </Style>
 
