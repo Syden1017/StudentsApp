@@ -16,8 +16,6 @@
         
         WindowStartupLocation="CenterScreen"
         
-        Loaded="Window_Loaded"
-        
         Icon="\Images\1C.png">
 
     <Grid Style="{DynamicResource gMain}">
@@ -70,7 +68,6 @@
 
                 <ComboBox x:Name="cmbBoxFilterField"
                           SelectionChanged="cmbBoxFilterField_SelectionChanged"
-                          SelectedIndex="0"
                           
                           Grid.Column="1"
                           Grid.Row="0">
@@ -90,7 +87,6 @@
 
                 <ComboBox x:Name="cmbBoxFilterType"
                           SelectionChanged="cmbBoxFilterType_SelectionChanged"
-                          SelectedIndex="0"
                           
                           Grid.Column="3"
                           Grid.Row="0">
@@ -119,12 +115,10 @@
 
                 <ComboBox x:Name="cmbBoxSortField"
                           SelectionChanged="cmbBoxSortField_SelectionChanged"
-                          SelectedIndex="0"
                           
                           Grid.Column="1"
                           Grid.Row="0">
                     <ComboBox.Items>
-                        <TextBlock Text="Не выбрано"/>
                         <TextBlock Text="# студенческого билета"/>
                         <TextBlock Text="Фамилия"/>
                         <TextBlock Text="Имя"/>
@@ -144,12 +138,10 @@
 
                 <ComboBox x:Name="cmbBoxSortType"
                           SelectionChanged="cmbBoxSortType_SelectionChanged"
-                          SelectedIndex="0"
                           
                           Grid.Column="3"
                           Grid.Row="0">
                     <ComboBox.Items>
-                        <TextBlock Text="Не задан"/>
                         <TextBlock Text="По возрастанию"/>
                         <TextBlock Text="По убыванию"/>
                     </ComboBox.Items>
@@ -171,7 +163,6 @@
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="2">
-
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ студенческого"
                                     HeaderStyle="{DynamicResource dGridColumnHeader}"
@@ -278,30 +269,32 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0"
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
                         
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Left">
+                        Grid.Column="0">
                 <TextBlock Text="Выводить по: "/>
 
-                <ComboBox x:Name="cBoxPageCount"
-                          SelectionChanged="cBoxPageCount_SelectionChanged"
+                <ComboBox x:Name="cmbBoxStudentCount"
+                          SelectionChanged="cmbBoxStudentCount_SelectionChanged"
                           Width="80">
-                    <ComboBoxItem Content="5"/>
-                    <ComboBoxItem Content="10"/>
-                    <ComboBoxItem Content="15"/>
-                    <ComboBoxItem Content="20"/>
-                    <ComboBoxItem Content="25"/>
-                    <ComboBoxItem Content="30"/>
+                    <ComboBox.Items>
+                        <TextBlock Text="5"/>
+                        <TextBlock Text="10"/>
+                        <TextBlock Text="15"/>
+                        <TextBlock Text="20"/>
+                        <TextBlock Text="25"/>
+                        <TextBlock Text="30"/>
+                    </ComboBox.Items>
                 </ComboBox>
 
                 <TextBlock Text=" студентов на странице"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1"
-                        
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                
+                        Grid.Column="1">
                 <Button x:Name="btnHome"
                         Click="btnHome_Click"
                         Content="&#10074;&#9664;&#9664;"/>
