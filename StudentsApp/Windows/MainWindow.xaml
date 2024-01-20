@@ -119,7 +119,7 @@
                           Grid.Column="1"
                           Grid.Row="0">
                     <ComboBox.Items>
-                        <TextBlock Text="# студенческого билета"/>
+                        <TextBlock Text="№ студенческого билета"/>
                         <TextBlock Text="Фамилия"/>
                         <TextBlock Text="Имя"/>
                         <TextBlock Text="Отчество"/>
