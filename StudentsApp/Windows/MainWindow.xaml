@@ -42,7 +42,8 @@
             <!-- Поиск -->
             <xctk:WatermarkTextBox x:Name="txtBoxSearch"
                                    Watermark="Поиск &#128269;"
-                                   HorizontalContentAlignment="Right"
+                                   Style="{DynamicResource txtBoxSearch}"
+                                   
                                    
                                    Grid.Column="0"
                                    Grid.Row="0"
@@ -60,14 +61,16 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Поле:"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
+                           Style="{DynamicResource txtBlockFilter}"
+                           
                            
                            Grid.Column="0"
                            Grid.Row="0"/>
 
                 <ComboBox x:Name="cmbBoxFilterField"
                           SelectionChanged="cmbBoxFilterField_SelectionChanged"
+                          
+                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
                           
                           Grid.Column="1"
                           Grid.Row="0">
@@ -79,14 +82,15 @@
                 </ComboBox>
 
                 <TextBlock Text="Значение:"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
+                           Style="{DynamicResource txtBlockFilter}"
                            
                            Grid.Column="2"
                            Grid.Row="0"/>
 
                 <ComboBox x:Name="cmbBoxFilterType"
                           SelectionChanged="cmbBoxFilterType_SelectionChanged"
+                          
+                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
                           
                           Grid.Column="3"
                           Grid.Row="0">
@@ -107,14 +111,15 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Поле:"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
+                           Style="{DynamicResource txtBlockSort}"
                            
                            Grid.Column="0"
                            Grid.Row="0"/>
 
                 <ComboBox x:Name="cmbBoxSortField"
                           SelectionChanged="cmbBoxSortField_SelectionChanged"
+                          
+                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
                           
                           Grid.Column="1"
                           Grid.Row="0">
@@ -130,14 +135,15 @@
                 </ComboBox>
 
                 <TextBlock Text="Тип:"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
+                           Style="{DynamicResource txtBlockSort}"
                            
                            Grid.Column="2"
                            Grid.Row="0"/>
 
                 <ComboBox x:Name="cmbBoxSortType"
                           SelectionChanged="cmbBoxSortType_SelectionChanged"
+                          
+                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
                           
                           Grid.Column="3"
                           Grid.Row="0">
@@ -326,6 +332,7 @@
 
                 <ComboBox x:Name="cmbBoxStudentCount"
                           SelectionChanged="cmbBoxStudentCount_SelectionChanged"
+                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
                           Width="80">
                     <ComboBox.Items>
                         <TextBlock Text="Все"/>
@@ -345,33 +352,33 @@
                         Grid.Column="1">
                 <Button x:Name="btnHome"
                         Click="btnHome_Click"
-                        Content="&#10074;&#9664;&#9664;"/>
+                        Content="&#10074;&#9664;&#9664;"
+                        Style="{DynamicResource btnMovePage}"/>
 
                 <Button x:Name="btnPrev"
                         Click="btnPrev_Click"
-                        Content="&#9664;"/>
+                        Content="&#9664;"
+                        Style="{DynamicResource btnMovePage}"/>
 
                 <TextBox x:Name="txtBoxCurrentPage"
                          TextChanged="txtBoxCurrentPage_TextChanged"
-                         Width="50"
-                         TextAlignment="Center"/>
+                         Style="{DynamicResource txtBoxCurrentPage}"/>
 
                 <TextBlock Text="/"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                           Style="{DynamicResource txtBlockSeparator}"/>
 
                 <TextBox x:Name="txtBoxTotalPage"
-                         Width="50"
-                         TextAlignment="Center"
-                         IsReadOnly="True"/>
+                         Style="{DynamicResource txtBoxTotalPage}"/>
 
                 <Button x:Name="btnNext"
                         Click="btnNext_Click"
-                        Content="&#9654;"/>
+                        Content="&#9654;"
+                        Style="{DynamicResource btnMovePage}"/>
 
                 <Button x:Name="btnEnd"
                         Click="btnEnd_Click"
-                        Content="&#9654;&#9654;&#10074;"/>
+                        Content="&#9654;&#9654;&#10074;"
+                        Style="{DynamicResource btnMovePage}"/>
             </StackPanel>
         </Grid>
     </Grid>

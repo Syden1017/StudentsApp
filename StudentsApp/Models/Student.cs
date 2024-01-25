@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StudentsApp.Models;
 
@@ -17,4 +18,6 @@ public partial class Student
     public string Address { get; set; } = null!;
 
     public string PhoneNumber { get; set; } = null!;
+
+    public byte[]? Photo { get; set; }
 }
