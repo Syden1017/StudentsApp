@@ -157,108 +157,157 @@
                 Grid.Column="1"
                 Grid.Row="0"/>
 
-        <DataGrid x:Name="dgStudents"
-                  Style="{DynamicResource dGridStudents}"
-                  
+        <ListView x:Name="lViewStudents"
                   Grid.Column="0"
                   Grid.Row="1"
-                  Grid.ColumnSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="№ студенческого"
-                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                    CellStyle="{DynamicResource dGridElement}"
-                                    Width="*"
-                                    Binding="{Binding StudentId}"/>
+                  Grid.ColumnSpan="2"
+                  
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalAlignment="Center">
 
-                <DataGridTextColumn Header="Фамилия"
-                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                    CellStyle="{DynamicResource dGridElement}"
-                                    Width="*"
-                                    Binding="{Binding LastName}"/>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                               HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
 
-                <DataGridTextColumn Header="Имя"
-                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                    CellStyle="{DynamicResource dGridElement}"
-                                    Width="*"
-                                    Binding="{Binding FirstName}"/>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1"
+                            BorderBrush="#000">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="25"/>
+                            </Grid.ColumnDefinitions>
 
-                <DataGridTextColumn Header="Отчество"
-                                    HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                    CellStyle="{DynamicResource dGridElement}"
-                                    Width="*"
-                                    Binding="{Binding MiddleName}"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
 
-                <DataGridTemplateColumn Header="Дата рождения"
-                                        HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                        CellStyle="{DynamicResource dGridElement}"
-                                        Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding BirthDate}">
-                                <DatePicker.Resources>
-                                    <Style TargetType="DatePickerTextBox">
-                                        <Setter Property="IsReadOnly"
-                                                Value="True"/>
+                            <Image Grid.Column="0"
+                                   Grid.Row="0"
+                                   Grid.RowSpan="7">
+                                <Image.Source>
+                                    <Binding Path="Photo">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>
+                                                /StudentsApp;component/Images/student.png
+                                            </ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
 
-                                        <Setter Property="Background"
-                                                Value="#FFFFD9"/>
-                                    </Style>
-                                </DatePicker.Resources>
-                            </DatePicker>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                            <TextBlock Text="№ студ. билета:"
+                                       
+                                       Grid.Column="1"
+                                       Grid.Row="0"/>
 
-                <DataGridTemplateColumn Header="Адрес"
-                                        HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                        Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding Address}"
-                                     IsReadOnly="True"
-                                     TextWrapping="Wrap"
-                                     Background="#FFFFD9"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                            <TextBlock Text="{Binding StudentId}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="4"/>
 
-                <DataGridTemplateColumn Header="Телефон"
-                                        HeaderStyle="{DynamicResource dGridColumnHeader}"
-                                        CellStyle="{DynamicResource dGridElement}"
-                                        Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <xctk:MaskedTextBox Text="{Binding PhoneNumber}"
-                                                Mask="+7(000)000-00-00"
-                                                IsReadOnly="True"
-                                                Background="#FFFFD9"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                            <TextBlock Text="Фамилия:"
+                   
+                                       Grid.Column="1"
+                                       Grid.Row="1"/>
 
-                <DataGridTemplateColumn HeaderStyle="{DynamicResource dGridColumnHeader}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
+                            <TextBlock Text="{Binding LastName}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="4"/>
+
+                            <TextBlock Text="Имя:"
+                   
+                                       Grid.Column="1"
+                                       Grid.Row="2"/>
+
+                            <TextBlock Text="{Binding FirstName}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="4"/>
+
+                            <TextBlock Text="Отчество:"
+                   
+                                       Grid.Column="1"
+                                       Grid.Row="3"/>
+
+                            <TextBlock Text="{Binding MiddleName}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="3"
+                                       Grid.ColumnSpan="4"/>
+
+                            <TextBlock Text="Дата рождения:"
+                   
+                                       Grid.Column="1"
+                                       Grid.Row="4"/>
+
+                            <TextBlock Text="{Binding BirthDate,
+                                              StringFormat={}{0:dd.MM.yyyy}}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="4"
+                                       Grid.ColumnSpan="4"/>
+
+                            <TextBlock Text="Адрес:"
+                   
+                                       Grid.Column="1"
+                                       Grid.Row="5"/>
+
+                            <TextBlock Text="{Binding Address}"
+                                   
+                                       Grid.Column="2"
+                                       Grid.Row="5"
+                                       Grid.ColumnSpan="4"
+                                       
+                                       TextWrapping="Wrap"/>
+
+                            <TextBlock Text="Телефон:"
+                   
+                                       Grid.Column="1"
+                                       Grid.Row="6"/>
+
+                            <TextBlock Text="{Binding PhoneNumber,
+                                              StringFormat=+7 {0}}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="6"
+                                       Grid.ColumnSpan="4"/>
+
                             <Button x:Name="btnEdit"
                                     Click="btnEdit_Click"
                                     Content="&#9999;"
-                                    Cursor="Hand"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                                    
+                                    Grid.Column="3"
+                                    Grid.Row="0"/>
 
-                <DataGridTemplateColumn HeaderStyle="{DynamicResource dGridColumnHeader}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
                             <Button x:Name="btnDelete"
                                     Click="btnDelete_Click"
                                     Content="&#10005;"
-                                    Cursor="Hand"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                                    
+                                    Grid.Column="4"
+                                    Grid.Row="0"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Grid Grid.Column="0"
               Grid.Row="2"
@@ -273,12 +322,13 @@
                         HorizontalAlignment="Left"
                         
                         Grid.Column="0">
-                <TextBlock Text="Выводить по: "/>
+                <TextBlock Text="Студентов на странице: "/>
 
                 <ComboBox x:Name="cmbBoxStudentCount"
                           SelectionChanged="cmbBoxStudentCount_SelectionChanged"
                           Width="80">
                     <ComboBox.Items>
+                        <TextBlock Text="Все"/>
                         <TextBlock Text="5"/>
                         <TextBlock Text="10"/>
                         <TextBlock Text="15"/>
@@ -287,8 +337,6 @@
                         <TextBlock Text="30"/>
                     </ComboBox.Items>
                 </ComboBox>
-
-                <TextBlock Text=" студентов на странице"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"

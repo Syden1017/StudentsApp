@@ -35,6 +35,7 @@ namespace StudentsApp
 
         StudentsContext _db = new StudentsContext();
         List<Student> _students = new List<Student>();
+        int _studentCount = 0;
 
         // Распределение по страницам
         int _currentPage = 1,
@@ -43,9 +44,6 @@ namespace StudentsApp
         public MainWindow()
         {
             InitializeComponent();
-
-            _db.Students.Load();
-            _students = _db.Students.ToList();
 
             cmbBoxFilterType.SelectedIndex = 0;
             cmbBoxFilterType.SelectedIndex = 0;
@@ -64,6 +62,10 @@ namespace StudentsApp
         /// </summary>
         private void UpdateStudentList()
         {
+            _db.Students.Load();
+            _students = _db.Students.ToList();
+            _studentCount = _students.Count;
+
             string request = txtBoxSearch.Text.
                                           Replace(" ", "").
                                           ToLower();
@@ -77,7 +79,7 @@ namespace StudentsApp
             txtBoxCurrentPage.MaxLength = _maxPage.ToString().Length;
             txtBoxTotalPage.Text = _maxPage.ToString();
 
-            dgStudents.ItemsSource = studentList;
+            lViewStudents.ItemsSource = studentList;
         }
 
         /// <summary>
@@ -298,7 +300,12 @@ namespace StudentsApp
         /// <returns>Страница из списка студентов</returns>
         private List<Student> GetPages(List<Student> students)
         {
-            int pageSize = (cmbBoxStudentCount.SelectedIndex + 1) * 5;
+            int pageSize = _studentCount;
+
+            if (cmbBoxStudentCount.SelectedIndex != 0)
+            {
+                pageSize = cmbBoxStudentCount.SelectedIndex * 5;
+            }
 
             _maxPage = (int)Math.Ceiling(
                        (double)_db.Students.Count() / pageSize);
@@ -309,11 +316,22 @@ namespace StudentsApp
         }
 
         /// <summary>
+        /// Переход на заданную страницу
+        /// </summary>
+        /// <param name="page">Номер страницы</param>
+        private void GoToPage(int page)
+        {
+            _currentPage = page;
+
+            UpdateStudentList();
+        }
+
+        /// <summary>
         /// Выбор количества студентов на странице
         /// </summary>
         private void cmbBoxStudentCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateStudentList();
+            GoToPage(1);
         }
 
         /// <summary>
@@ -321,9 +339,7 @@ namespace StudentsApp
         /// </summary>
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            _currentPage = 1;
-
-            UpdateStudentList();
+            GoToPage(1);
         }
 
         /// <summary>
@@ -331,9 +347,7 @@ namespace StudentsApp
         /// </summary>
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
-            _currentPage = _maxPage;
-
-            UpdateStudentList();
+            GoToPage(_maxPage);
         }
 
         /// <summary>
@@ -346,9 +360,7 @@ namespace StudentsApp
                 return;
             }
 
-            _currentPage -= 1;
-
-            UpdateStudentList();
+            GoToPage(--_currentPage);
         }
 
         /// <summary>
@@ -361,9 +373,7 @@ namespace StudentsApp
                 return;
             }
 
-            _currentPage += 1;
-
-            UpdateStudentList();
+            GoToPage(++_currentPage);
         }
 
         /// <summary>
@@ -375,10 +385,33 @@ namespace StudentsApp
                 _currentPage <= _maxPage &&
                 txtBoxCurrentPage.Text != string.Empty)
             {
-                _currentPage = Convert.ToInt32(txtBoxCurrentPage.Text);
+                if (!int.TryParse(txtBoxCurrentPage.Text, out _currentPage))
+                {
+                    _currentPage = 1;
+
+                    MessageBox.Show(
+                        "Номер страницы введён некорректно.\n" +
+                        "Осуществлено перенаправление в начало списка.",
+                        "Внимание!",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                        );
+                }
+                else if (_currentPage > _maxPage)
+                {
+                    _currentPage = _maxPage;
+
+                    MessageBox.Show(
+                        "Номер страницы не найден.\n" +
+                        "Осуществлено перенаправление в конец списка.",
+                        "Внимание!",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                        );
+                }
             }
 
-            UpdateStudentList();
+            GoToPage(_currentPage);
         }
         #endregion
     }
