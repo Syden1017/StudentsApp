@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 
 using System;
 using System.Linq;
@@ -7,6 +8,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
+
 using StudentsApp.Models;
 
 namespace StudentsApp.Windows
@@ -20,6 +24,8 @@ namespace StudentsApp.Windows
 
         Student _currentStudent = new Student(),
                 _student;
+
+        private byte[] _selectedImageBytes;
 
         public AddEditStudentWindow(Student selectedStudent)
         {
@@ -75,6 +81,10 @@ namespace StudentsApp.Windows
             }
         }
 
+        /// <summary>
+        /// Валидация DatePicker на соответствие ограничению
+        /// </summary>
+        /// <param name="datePicker">DatePicker для валидации</param>
         private static void ValidateText(DatePicker datePicker)
         {
             if (datePicker.SelectedDate >= new DateTime(2000, 1, 1))
@@ -158,7 +168,7 @@ namespace StudentsApp.Windows
         /// </summary>
         private void txtBoxPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ValidateText(txtBoxPhoneNumber, @"^\+7\(9\d{2}\)\d{3}-\d{2}-\d{2}$");
+            ValidateText(txtBoxPhoneNumber, @"^\+7\(9\d{3}\)\d{3}-\d{2}-\d{2}$");
         }
 
         /// <summary>
@@ -306,6 +316,20 @@ namespace StudentsApp.Windows
                      MessageBoxButton.OK,
                      MessageBoxImage.Error
                     );
+            }
+        }
+
+        private void imgStudent_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
+                imgStudent.Source = bitmap;
+
+                _selectedImageBytes = File.ReadAllBytes(openFileDialog.FileName);
             }
         }
 
