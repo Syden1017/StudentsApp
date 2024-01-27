@@ -45,7 +45,7 @@ namespace StudentsApp
         {
             InitializeComponent();
 
-            cmbBoxFilterType.SelectedIndex = 0;
+            cmbBoxFilterField.SelectedIndex = 0;
             cmbBoxFilterType.SelectedIndex = 0;
 
             cmbBoxSortField.SelectedIndex = 0;
@@ -70,16 +70,29 @@ namespace StudentsApp
                                           Replace(" ", "").
                                           ToLower();
 
+            int year = 0;
+
+            if (cmbBoxFilterType.SelectedIndex > 0)
+            {
+                int.TryParse(cmbBoxFilterType.SelectedValue.ToString(), out year);
+            }
+
             // Список формировать в порядке
             // сортировка -> поиск -> фильтрация -> деление на страницы
             List<Student> studentList = SearchStudents(
-                                        GetPages(_students), request);
+                                            FilterStudents(
+                                                GetPages(_students),
+                                                          cmbBoxFilterField.SelectedIndex,
+                                                          year),
+                                                      request);
 
             txtBoxCurrentPage.Text = _currentPage.ToString();
             txtBoxCurrentPage.MaxLength = _maxPage.ToString().Length;
             txtBoxTotalPage.Text = _maxPage.ToString();
 
             lViewStudents.ItemsSource = studentList;
+
+            txtBlockStudentCount.Text = _studentCount.ToString();
         }
 
         /// <summary>
@@ -186,6 +199,22 @@ namespace StudentsApp
 
         #region Filter
         /// <summary>
+        /// Очистка данных из ComboBox
+        /// </summary>
+        /// <param name="comboBox">ComboBox для очистки</param>
+        private void ClearComboBox(ComboBox comboBox)
+        {
+            try
+            {
+                comboBox.Items.Clear();
+            }
+            catch (Exception)
+            {
+                comboBox.ItemsSource = null;
+            }
+        }
+
+        /// <summary>
         /// <para>Получение списка годов поступления студентов</para>
         /// <para>Загрузка списка в ComboBox</para>
         /// </summary>
@@ -202,14 +231,7 @@ namespace StudentsApp
             admissionYears = admissionYears.Distinct().OrderBy(y => y).ToList();
             admissionYears.Insert(0, "Все года");
 
-            try
-            {
-                filterType.Items.Clear();
-            }
-            catch (Exception)
-            {
-                filterType.ItemsSource = null;
-            }
+            ClearComboBox(filterType);
 
             filterType.ItemsSource = admissionYears;
             filterType.SelectedIndex = 0;
@@ -229,17 +251,42 @@ namespace StudentsApp
 
             birthYears.Insert(0, "Все года");
 
-            try
-            {
-                filterType.Items.Clear();
-            }
-            catch (Exception)
-            {
-                filterType.ItemsSource = null;
-            }
+            ClearComboBox(filterType);
 
             filterType.ItemsSource = birthYears;
             filterType.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Фильтрация списка студентов по году поступления / году рождения
+        /// </summary>
+        /// <param name="students">Список студентов для фильтрации</param>
+        /// <param name="filterField">Номер поля для фильтрации</param>
+        /// <param name="year">Значение года фильтрации</param>
+        /// <returns>Результаты фильтрации</returns>
+        private List<Student> FilterStudents(List<Student> students, int filterField, int year)
+        {
+            if (year != 0)
+            {
+                switch (filterField)
+                {
+                    case FILTER_BY_ADMISSION_YEAR:
+                        students = students.Where(s => s.StudentId.Contains("-" + year.ToString().
+                                                                                       Remove(0, 2))).ToList();
+
+                        break;
+
+                    case FILTER_BY_BIRTH_YEAR:
+                        students = students.Where(s => s.BirthDate.Year == year).ToList();
+
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            return students;
         }
 
         /// <summary>
@@ -261,6 +308,9 @@ namespace StudentsApp
 
                 // Поле фильтра не выбрано
                 default:
+                    ClearComboBox(cmbBoxFilterType);
+                    cmbBoxFilterType.Items.Add("Не задано");
+                    cmbBoxFilterType.SelectedIndex = 0;
                     break;
             }
         }
@@ -270,7 +320,7 @@ namespace StudentsApp
         /// </summary>
         private void cmbBoxFilterType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateStudentList();
         }
         #endregion
 
@@ -304,7 +354,7 @@ namespace StudentsApp
 
             if (cmbBoxStudentCount.SelectedIndex != 0)
             {
-                pageSize = cmbBoxStudentCount.SelectedIndex * 5;
+                pageSize = cmbBoxStudentCount.SelectedIndex * 4;
             }
 
             _maxPage = (int)Math.Ceiling(

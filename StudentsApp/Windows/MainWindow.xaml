@@ -44,7 +44,6 @@
                                    Watermark="Поиск &#128269;"
                                    Style="{DynamicResource txtBoxSearch}"
                                    
-                                   
                                    Grid.Column="0"
                                    Grid.Row="0"
                                    
@@ -111,6 +110,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Поле:"
+                           
                            Style="{DynamicResource txtBlockSort}"
                            
                            Grid.Column="0"
@@ -158,18 +158,20 @@
         <Button x:Name="btnAdd"
                 Click="btnAdd_Click"
                 Content="+"
+                
                 Style="{DynamicResource btnMain}"
                 
                 Grid.Column="1"
                 Grid.Row="0"/>
 
         <ListView x:Name="lViewStudents"
-                  Grid.Column="0"
-                  Grid.Row="1"
-                  Grid.ColumnSpan="2"
                   
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  HorizontalAlignment="Center">
+                  HorizontalAlignment="Center"
+                  
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -197,7 +199,7 @@
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="35"/>
                                 <RowDefinition Height="25"/>
                             </Grid.RowDefinitions>
 
@@ -220,81 +222,113 @@
                                        Grid.Column="1"
                                        Grid.Row="0"/>
 
-                            <TextBlock Text="{Binding StudentId}"
+                            <TextBox Text="{Binding StudentId}"
+                                     
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="True"
+                                     BorderThickness="0"
+                                     Background="Transparent"
                                        
-                                       Grid.Column="2"
-                                       Grid.Row="0"
-                                       Grid.ColumnSpan="4"/>
+                                     Grid.Column="2"
+                                     Grid.Row="0"
+                                     Grid.ColumnSpan="4"/>
 
                             <TextBlock Text="Фамилия:"
                    
                                        Grid.Column="1"
                                        Grid.Row="1"/>
 
-                            <TextBlock Text="{Binding LastName}"
+                            <TextBox Text="{Binding LastName}"
+                                     
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="True"
+                                     BorderThickness="0"
+                                     Background="Transparent"
                                        
-                                       Grid.Column="2"
-                                       Grid.Row="1"
-                                       Grid.ColumnSpan="4"/>
+                                     Grid.Column="2"
+                                     Grid.Row="1"
+                                     Grid.ColumnSpan="4"/>
 
                             <TextBlock Text="Имя:"
                    
                                        Grid.Column="1"
                                        Grid.Row="2"/>
 
-                            <TextBlock Text="{Binding FirstName}"
+                            <TextBox Text="{Binding FirstName}"
                                        
-                                       Grid.Column="2"
-                                       Grid.Row="2"
-                                       Grid.ColumnSpan="4"/>
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="True"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     
+                                     Grid.Column="2"
+                                     Grid.Row="2"
+                                     Grid.ColumnSpan="4"/>
 
                             <TextBlock Text="Отчество:"
                    
                                        Grid.Column="1"
                                        Grid.Row="3"/>
 
-                            <TextBlock Text="{Binding MiddleName}"
+                            <TextBox Text="{Binding MiddleName}"
+                                     
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="True"
+                                     BorderThickness="0"
+                                     Background="Transparent"
                                        
-                                       Grid.Column="2"
-                                       Grid.Row="3"
-                                       Grid.ColumnSpan="4"/>
+                                     Grid.Column="2"
+                                     Grid.Row="3"
+                                     Grid.ColumnSpan="4"/>
 
                             <TextBlock Text="Дата рождения:"
                    
                                        Grid.Column="1"
                                        Grid.Row="4"/>
 
-                            <TextBlock Text="{Binding BirthDate,
-                                              StringFormat={}{0:dd.MM.yyyy}}"
+                            <TextBox Text="{Binding BirthDate,
+                                            StringFormat={}{0:dd.MM.yyyy}}"
+                                     
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="True"
+                                     BorderThickness="0"
+                                     Background="Transparent"
                                        
-                                       Grid.Column="2"
-                                       Grid.Row="4"
-                                       Grid.ColumnSpan="4"/>
+                                     Grid.Column="2"
+                                     Grid.Row="4"
+                                     Grid.ColumnSpan="4"/>
 
                             <TextBlock Text="Адрес:"
                    
                                        Grid.Column="1"
                                        Grid.Row="5"/>
 
-                            <TextBlock Text="{Binding Address}"
+                            <TextBox Text="{Binding Address}"
+                                     
+                                     TextWrapping="Wrap"
+                                     IsReadOnly="True"
+                                     BorderThickness="0"
+                                     Background="Transparent"
                                    
-                                       Grid.Column="2"
-                                       Grid.Row="5"
-                                       Grid.ColumnSpan="4"
-                                       
-                                       TextWrapping="Wrap"/>
+                                     Grid.Column="2"
+                                     Grid.Row="5"
+                                     Grid.ColumnSpan="4"/>
 
                             <TextBlock Text="Телефон:"
                    
                                        Grid.Column="1"
                                        Grid.Row="6"/>
 
-                            <TextBlock Text="{Binding PhoneNumber,
-                                              StringFormat=+7 {0}}"
+                            <xctk:MaskedTextBox Text="{Binding PhoneNumber}"
+                                                Mask="+7(000)000-00-00"
+                                                
+                                                IsReadOnly="True"
+                                                BorderThickness="0"
+                                                Background="Transparent"
                                        
-                                       Grid.Column="2"
-                                       Grid.Row="6"
-                                       Grid.ColumnSpan="4"/>
+                                                Grid.Column="2"
+                                                Grid.Row="6"
+                                                Grid.ColumnSpan="4"/>
 
                             <Button x:Name="btnEdit"
                                     Click="btnEdit_Click"
@@ -336,12 +370,12 @@
                           Width="80">
                     <ComboBox.Items>
                         <TextBlock Text="Все"/>
-                        <TextBlock Text="5"/>
-                        <TextBlock Text="10"/>
-                        <TextBlock Text="15"/>
+                        <TextBlock Text="4"/>
+                        <TextBlock Text="8"/>
+                        <TextBlock Text="12"/>
+                        <TextBlock Text="16"/>
                         <TextBlock Text="20"/>
-                        <TextBlock Text="25"/>
-                        <TextBlock Text="30"/>
+                        <TextBlock Text="24"/>
                     </ComboBox.Items>
                 </ComboBox>
             </StackPanel>
@@ -352,12 +386,16 @@
                         Grid.Column="1">
                 <Button x:Name="btnHome"
                         Click="btnHome_Click"
+                        
                         Content="&#10074;&#9664;&#9664;"
+                        
                         Style="{DynamicResource btnMovePage}"/>
 
                 <Button x:Name="btnPrev"
                         Click="btnPrev_Click"
+                        
                         Content="&#9664;"
+                        
                         Style="{DynamicResource btnMovePage}"/>
 
                 <TextBox x:Name="txtBoxCurrentPage"
@@ -372,13 +410,26 @@
 
                 <Button x:Name="btnNext"
                         Click="btnNext_Click"
+                        
                         Content="&#9654;"
+                        
                         Style="{DynamicResource btnMovePage}"/>
 
                 <Button x:Name="btnEnd"
                         Click="btnEnd_Click"
+                        
                         Content="&#9654;&#9654;&#10074;"
+                        
                         Style="{DynamicResource btnMovePage}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        
+                        Grid.Column="2">
+                <TextBlock Text="Всего студентов:"/>
+                
+                <TextBlock x:Name="txtBlockStudentCount"/>
             </StackPanel>
         </Grid>
     </Grid>

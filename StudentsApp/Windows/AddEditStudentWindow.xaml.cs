@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+
+using System;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -277,6 +279,10 @@ namespace StudentsApp.Windows
             if (_student != _currentStudent)
             {
                 _db.Students.Add(_currentStudent);
+            }
+            else
+            {
+                _db.Entry(_currentStudent).State = EntityState.Modified;
             }
 
             try

@@ -65,6 +65,7 @@
                 </Image>
 
                 <TextBlock Text="№ студенческого билета:"
+                           
                            Style="{DynamicResource txtBlockAddEditStudentWindowStudentId}"
                            
                            Grid.Column="2"
@@ -72,6 +73,7 @@
 
                 <TextBox x:Name="txtBoxStudentId"
                          Text="{Binding StudentId}"
+                         TextChanged="txtBoxStudentId_TextChanged"
                          
                          Style="{DynamicResource txtBoxAddEditStudentWindow}"
                          
@@ -79,6 +81,7 @@
                          Grid.Row="0"/>
 
                 <TextBlock Text="Фамилия:"
+                           
                            Style="{DynamicResource txtBlockAddEditStudentWindow}"
                            
                            Grid.Column="2"
@@ -86,6 +89,7 @@
 
                 <TextBox x:Name="txtBoxLastName"
                          Text="{Binding LastName}"
+                         TextChanged="txtBoxLastName_TextChanged"
                          
                          Style="{DynamicResource txtBoxAddEditStudentWindow}"
                          
@@ -93,6 +97,7 @@
                          Grid.Row="1"/>
 
                 <TextBlock Text="Имя:"
+                           
                            Style="{DynamicResource txtBlockAddEditStudentWindow}"
                            
                            Grid.Column="2"
@@ -100,6 +105,7 @@
 
                 <TextBox x:Name="txtBoxFirstName"
                          Text="{Binding FirstName}"
+                         TextChanged="txtBoxFirstName_TextChanged"
                          
                          Style="{DynamicResource txtBoxAddEditStudentWindow}"
                          
@@ -107,6 +113,7 @@
                          Grid.Row="2"/>
 
                 <TextBlock Text="Отчество:"
+                           
                            Style="{DynamicResource txtBlockAddEditStudentWindow}"
                            
                            Grid.Column="2"
@@ -114,6 +121,7 @@
 
                 <TextBox x:Name="txtBoxMiddleName"
                          Text="{Binding MiddleName}"
+                         TextChanged="txtBoxMiddleName_TextChanged"
                          
                          Style="{DynamicResource txtBoxAddEditStudentWindow}"
                          
@@ -121,6 +129,7 @@
                          Grid.Row="3"/>
 
                 <TextBlock Text="Дата рождения:"
+                           
                            Style="{DynamicResource txtBlockAddEditStudentWindow}"
                            
                            Grid.Column="2"
@@ -129,6 +138,7 @@
                 <DatePicker x:Name="dPicBirthDate"
                             SelectedDate="{Binding BirthDate,
                                            StringFormat={}{0:dd.MM.yyyy}}"
+                            SelectedDateChanged="dPicBirthDate_SelectedDateChanged"
                             
                             Style="{DynamicResource dPicAddEditStudentWindow}"
                             
@@ -143,12 +153,15 @@
 
                 <TextBox x:Name="txtBoxAddress"
                          Text="{Binding Address}"
+                         TextChanged="txtBoxAddress_TextChanged"
+                         
                          Style="{DynamicResource txtBoxAddressAddEditStudentWindow}"
                          
                          Grid.Column="3"
                          Grid.Row="5"/>
 
                 <TextBlock Text="Номер телефона:"
+                           
                            Style="{DynamicResource txtBlockAddEditStudentWindow}"
                            
                            Grid.Column="2"
@@ -157,6 +170,7 @@
                 <xctk:MaskedTextBox x:Name="txtBoxPhoneNumber"
                                     Text="{Binding PhoneNumber}"
                                     Mask="+7(000)-000-00-00"
+                                    TextChanged="txtBoxPhoneNumber_TextChanged"
                                     
                                     Style="{DynamicResource txtBoxAddEditStudentWindow}"
                                     
