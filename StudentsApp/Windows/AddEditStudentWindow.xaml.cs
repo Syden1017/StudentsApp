@@ -2,14 +2,15 @@
 using Microsoft.Win32;
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.IO;
 
 using StudentsApp.Models;
 
@@ -25,7 +26,7 @@ namespace StudentsApp.Windows
         Student _currentStudent = new Student(),
                 _student;
 
-        private byte[] _selectedImageBytes;
+        byte[] _imageData;
 
         public AddEditStudentWindow(Student selectedStudent)
         {
@@ -297,6 +298,11 @@ namespace StudentsApp.Windows
 
             try
             {
+                if (_imageData != null)
+                {
+                    _currentStudent.Photo = _imageData;
+                }
+
                 _db.SaveChanges();
 
                 MessageBox.Show(
@@ -319,17 +325,85 @@ namespace StudentsApp.Windows
             }
         }
 
-        private void imgStudent_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        /// <summary>
+        /// Считывание изображения из массива байт
+        /// </summary>
+        /// <param name="byteStream">Поток на основе массива байт</param>
+        /// <param name="photo">Формируемое изображение</param>
+        private void ReadBitmapImageFromArray(MemoryStream byteStream, out BitmapImage image)
+        {
+            image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = byteStream;
+            image.EndInit();
+        }
+
+        /// <summary>
+        /// Загрузка изображения
+        /// </summary>
+        /// <param name="imageData">Массив байт для записи изображения</param>
+        /// <param name="image">Загруженное изображение</param>
+        private void OpenImage(ref byte[] imageData, ref BitmapImage image)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Title = "Выбор фото";
+            openFileDialog.Filter = "Image files (*.jpeg;*.jpg;*.png)|*.jpeg;*.jpg;*.png|" +
+                                    "Jpg files (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
+                                    "Png files (*.png)|*.png";
+            openFileDialog.FilterIndex = 1;
 
-            if (openFileDialog.ShowDialog() == true)
+            if (openFileDialog.ShowDialog().Value)
             {
-                BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
-                imgStudent.Source = bitmap;
+                try
+                {
+                    using (FileStream fileStream = new FileStream(openFileDialog.FileName, FileMode.Open))
+                    {
+                        imageData = new byte[fileStream.Length];
+                        fileStream.Read(imageData, 0, imageData.Length);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message.ToString(),
+                        "Системная ошибка",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                        );
+                }
 
-                _selectedImageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                ReadBitmapImageFromArray(new MemoryStream(imageData), out image);
+            }
+        }
+
+        /// <summary>
+        /// Получение изображения
+        /// </summary>
+        /// <returns>Загруженное изображение</returns>
+        private BitmapImage GetImage()
+        {
+            BitmapImage image = new BitmapImage();
+
+            if (_currentStudent.Photo != null)
+            {
+                ReadBitmapImageFromArray(new MemoryStream(_currentStudent.Photo), out image);
+            }
+            
+            OpenImage(ref _imageData, ref image);
+
+            return image;
+        }
+
+        /// <summary>
+        /// Обработка нажатия на Image
+        /// </summary>
+        private void imgPhoto_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BitmapImage photo = GetImage();
+
+            if (photo != null)
+            {
+                imgPhoto.Source = photo;
             }
         }
 

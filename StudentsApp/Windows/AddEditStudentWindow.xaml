@@ -11,8 +11,8 @@
         Title="{Binding StudentId,
                 StringFormat={}Студент {0}}" 
         
-        Height="450" 
-        Width="850"
+        Height="300" 
+        Width="500"
         
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
@@ -33,13 +33,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <Image x:Name="imgStudent"
-               MouseLeftButtonDown="imgStudent_MouseLeftButtonDown"
+        <Image x:Name="imgPhoto"
+               Cursor="Hand"
+               
+               MouseLeftButtonDown="imgPhoto_MouseLeftButtonDown"
                
                Grid.Column="0"
                Grid.Row="0"
@@ -156,8 +158,9 @@
                             Text="{Binding PhoneNumber}"
                             Mask="+7(000)-000-00-00"
                             TextChanged="txtBoxPhoneNumber_TextChanged"
-                            
-                            Style="{DynamicResource txtBoxAddEditStudentWindow}"
+                            Background="#FDF7D7"
+                            VerticalContentAlignment="Center"
+                            FontSize="12"
                             
                             Grid.Column="3"
                             Grid.Row="6"/>

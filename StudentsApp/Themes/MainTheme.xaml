@@ -162,7 +162,7 @@
            TargetType="TextBox">
         <Style.Setters>
             <Setter Property="Margin"
-                    Value="2 10 2 10"/>
+                    Value="2 5"/>
 
             <Setter Property="BorderBrush"
                     Value="#D7D7D7"/>
@@ -171,7 +171,7 @@
                     Value="#FDF7D7"/>
 
             <Setter Property="FontSize"
-                    Value="16"/>
+                    Value="12"/>
 
             <Setter Property="VerticalContentAlignment"
                     Value="Center"/>
@@ -182,7 +182,7 @@
            TargetType="TextBox">
         <Style.Setters>
             <Setter Property="Margin"
-                    Value="2 10 2 10"/>
+                    Value="2 7 2 7"/>
             
             <Setter Property="TextWrapping"
                     Value="Wrap"/>
@@ -194,7 +194,7 @@
                     Value="#FDF7D7"/>
 
             <Setter Property="FontSize"
-                    Value="16"/>
+                    Value="12"/>
         </Style.Setters>
     </Style>
 
@@ -202,7 +202,7 @@
            TargetType="DatePicker">
         <Style.Setters>
             <Setter Property="Margin"
-                    Value="2 9 2 9"/>
+                    Value="2"/>
 
             <Setter Property="BorderBrush"
                     Value="#D7D7D7"/>
@@ -211,7 +211,7 @@
                     Value="#FDF7D7"/>
 
             <Setter Property="FontSize"
-                    Value="16"/>
+                    Value="12"/>
 
             <Setter Property="VerticalContentAlignment"
                     Value="Center"/>
@@ -234,7 +234,7 @@
                     Value="#FCFF16"/>
 
             <Setter Property="Margin"
-                    Value="5 13 5 13"/>
+                    Value="5 7 5 7"/>
 
             <Setter Property="Template">
                 <Setter.Value>
