@@ -21,17 +21,14 @@ namespace StudentsApp
         const int FILTER_BY_BIRTH_YEAR     = 2;     // Фильтр по году рождения
 
         // Поле сортировки
-        const int SORT_BY_STUDENT_ID   = 0,     // Сортировка по № студенческого билета
-                  SORT_BY_LAST_NAME    = 1,     // Сортировка по фамилии
-                  SORT_BY_FIRST_NAME   = 2,     // Соортировка по имени
-                  SORT_BY_MIDDLE_NAME  = 3,     // Сортировка по отчеству
-                  SORT_BY_BIRTH_DATE   = 4,     // Сортировка по дате рождения
-                  SORT_BY_ADDRESS      = 5,     // Сортировка по адресу
-                  SORT_BY_PHONE_NUMBER = 6;     // Сортировка по номеру телефона
+        const int SORT_BY_STUDENT_ID    = 0,        // Сортировка по № студенческого билета
+                  SORT_BY_LAST_NAME     = 1,        // Сортировка по фамилии
+                  SORT_BY_FIRST_NAME    = 2,        // Соортировка по имени
+                  SORT_BY_MIDDLE_NAME   = 3,        // Сортировка по отчеству
+                  SORT_BY_BIRTH_DATE    = 4;        // Сортировка по дате рождения
 
         // Тип сортировки
-        const int ASC_SORT  = 1,    // Сортировка по возрастанию
-                  DESC_SORT = 2;    // Сортировка по убыванию
+        const int ASC_SORT = 0;    // Сортировка по возрастанию
 
         StudentsContext _db = new StudentsContext();
         List<Student> _students = new List<Student>();
@@ -79,12 +76,19 @@ namespace StudentsApp
 
             // Список формировать в порядке
             // сортировка -> поиск -> фильтрация -> деление на страницы
-            List<Student> studentList = SearchStudents(
-                                            FilterStudents(
-                                                GetPages(_students),
-                                                          cmbBoxFilterField.SelectedIndex,
-                                                          year),
-                                                      request);
+            int filterField = cmbBoxFilterField.SelectedIndex,
+                sortField = cmbBoxSortField.SelectedIndex,
+                sortType = cmbBoxSortType.SelectedIndex;
+
+            List<Student> studentList = SortStudents(
+                                            SearchStudents(
+                                                FilterStudents(
+                                                    GetPages(_students),
+                                                                filterField,
+                                                                year),
+                                                          request),
+                                                     sortField,
+                                                     sortType);
 
             txtBoxCurrentPage.Text = _currentPage.ToString();
             txtBoxCurrentPage.MaxLength = _maxPage.ToString().Length;
@@ -326,11 +330,53 @@ namespace StudentsApp
 
         #region Sort
         /// <summary>
+        /// Сортировка списка студентов
+        /// </summary>
+        /// <param name="students">Список студентов для сортировки</param>
+        /// <param name="sortField">Номер поля сортировки</param>
+        /// <param name="sortType">Номер типа сортировки</param>
+        /// <returns>Отсортированный список</returns>
+        private List<Student> SortStudents(List<Student> students, int sortField, int sortType)
+        {
+            Func<Student, object> sortExpression;
+
+            switch (sortField)
+            {
+                case SORT_BY_STUDENT_ID:
+                    sortExpression = s => s.StudentId;
+                    break;
+
+                case SORT_BY_LAST_NAME:
+                    sortExpression = s => s.LastName;
+                    break;
+
+                case SORT_BY_FIRST_NAME:
+                    sortExpression = s => s.FirstName;
+                    break;
+
+                case SORT_BY_MIDDLE_NAME:
+                    sortExpression = s => s.MiddleName;
+                    break;
+
+                case SORT_BY_BIRTH_DATE:
+                    sortExpression = s => s.BirthDate;
+                    break;
+
+                default:
+                    sortExpression = s => s.StudentId;
+                    break;
+            }
+
+            return sortType == ASC_SORT ? students.OrderBy(sortExpression).ToList() :
+                                          students.OrderByDescending(sortExpression).ToList();
+        }
+
+        /// <summary>
         /// Выбор поля для сортировки
         /// </summary>
         private void cmbBoxSortField_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateStudentList();
         }
 
         /// <summary>
@@ -338,7 +384,7 @@ namespace StudentsApp
         /// </summary>
         private void cmbBoxSortType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateStudentList();
         }
         #endregion
 

@@ -129,8 +129,6 @@
                         <TextBlock Text="Имя"/>
                         <TextBlock Text="Отчество"/>
                         <TextBlock Text="Дата рождения"/>
-                        <TextBlock Text="Адрес"/>
-                        <TextBlock Text="Телефон"/>
                     </ComboBox.Items>
                 </ComboBox>
 
