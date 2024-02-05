@@ -26,6 +26,18 @@ namespace StudentsApp.Windows
         Student _currentStudent = new Student(),
                 _student;
 
+        static string _workingDirectory = Directory.GetParent(
+                                    Directory.GetParent(
+                                        Directory.GetParent(
+                                            Environment.CurrentDirectory).
+                                                            FullName).
+                                                        FullName).
+                                                       FullName;
+
+        BitmapImage _currentImage,
+                    _defaultImage = new BitmapImage(new Uri(_workingDirectory +
+                                                            @"\Images\student.png"));
+
         byte[] _imageData;
 
         public AddEditStudentWindow(Student selectedStudent)
@@ -34,9 +46,18 @@ namespace StudentsApp.Windows
 
             _student = selectedStudent;
 
+            _currentImage = _defaultImage;
+
             if (selectedStudent != null)
             {
                 _currentStudent = selectedStudent;
+
+                _imageData = _currentStudent.Photo;
+
+                if (_currentStudent.Photo != null)
+                {
+                    ReadBitmapImageFromArray(new MemoryStream(_currentStudent.Photo), out _currentImage);
+                }
 
                 txtBoxStudentId.IsEnabled = false;
             }
@@ -298,10 +319,7 @@ namespace StudentsApp.Windows
 
             try
             {
-                if (_imageData != null)
-                {
-                    _currentStudent.Photo = _imageData;
-                }
+                _currentStudent.Photo = _imageData;
 
                 _db.SaveChanges();
 
@@ -381,21 +399,23 @@ namespace StudentsApp.Windows
         /// </summary>
         /// <returns>Загруженное изображение</returns>
         private BitmapImage GetImage()
-        {
-            BitmapImage image = new BitmapImage();
+        {            
+            OpenImage(ref _imageData, ref _currentImage);
 
-            if (_currentStudent.Photo != null)
-            {
-                ReadBitmapImageFromArray(new MemoryStream(_currentStudent.Photo), out image);
-            }
-            
-            OpenImage(ref _imageData, ref image);
-
-            return image;
+            return _currentImage;
         }
 
         /// <summary>
-        /// Обработка нажатия на Image
+        /// Обработка нажатия правой кнопки мыши на Image
+        /// </summary>
+        private void imgPhoto_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            imgPhoto.Source = _defaultImage;
+            _imageData = null;
+        }
+
+        /// <summary>
+        /// Обработка нажатия левой кнопки мыши на Image
         /// </summary>
         private void imgPhoto_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

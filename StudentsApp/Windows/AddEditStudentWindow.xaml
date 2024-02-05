@@ -42,6 +42,7 @@
                Cursor="Hand"
                
                MouseLeftButtonDown="imgPhoto_MouseLeftButtonDown"
+               MouseRightButtonDown="imgPhoto_MouseRightButtonDown"
                
                Grid.Column="0"
                Grid.Row="0"
@@ -58,20 +59,21 @@
             </Image.Source>
         </Image>
 
-            <TextBlock Text="№ студ. билета:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
-                   
-                   Grid.Column="2"
-                   Grid.Row="0"/>
+        <TextBlock Text="№ студ. билета:"
+               Style="{DynamicResource txtBlockAddEditStudentWindow}"
+               
+               Grid.Column="2"
+               Grid.Row="0"/>
 
-        <TextBox x:Name="txtBoxStudentId"
-                 Text="{Binding StudentId}"
-                 TextChanged="txtBoxStudentId_TextChanged"
-                 
-                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
-                 
-                 Grid.Column="3"
-                 Grid.Row="0"/>
+        <xctk:MaskedTextBox x:Name="txtBoxStudentId"
+                            Text="{Binding StudentId}"
+                            Mask="000-00"
+                            TextChanged="txtBoxStudentId_TextChanged"
+                            
+                            Style="{DynamicResource txtBoxAddEditStudentWindow}"
+                            
+                            Grid.Column="3"
+                            Grid.Row="0"/>
 
         <TextBlock Text="Фамилия:"
                    Style="{DynamicResource txtBlockAddEditStudentWindow}"
