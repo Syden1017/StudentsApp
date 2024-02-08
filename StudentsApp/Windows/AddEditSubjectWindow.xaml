@@ -1,0 +1,72 @@
+﻿<Window x:Class="StudentsApp.Windows.AddEditSubjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentsApp.Windows"
+        mc:Ignorable="d"
+        
+        x:Name="addEditWindow"
+        
+        Title="{Binding SubjectId,
+                StringFormat={}Предмет {0}}" 
+        
+        Height="200" 
+        Width="400"
+        
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Код предмета:"
+                   Grid.Column="0"
+                   Grid.Row="0"/>
+
+        <TextBox x:Name="txtBoxSubjectId"
+                 Text="{Binding SubjectId}"
+                 Grid.Column="1"
+                 Grid.Row="0"/>
+
+        <TextBlock Text="Название предмета:"
+                   Grid.Column="0"
+                   Grid.Row="1"/>
+
+        <TextBox x:Name="txtBoxSubjectName"
+                 Text="{Binding SubjectName}"
+                 Grid.Column="1"
+                 Grid.Row="1"/>
+
+        <TextBlock Text="Количество часов:"
+                   Grid.Column="0"
+                   Grid.Row="2"/>
+
+        <TextBox x:Name="txtBoxTotalHours"
+                 Text="{Binding TotalHours}"
+                 Grid.Column="1"
+                 Grid.Row="2"/>
+
+        <Button x:Name="btnSave"
+                Content="Сохранить"
+                Click="btnSave_Click"
+                Grid.Column="0"
+                Grid.Row="3"/>
+
+        <Button x:Name="btnCancel"
+                Content="Отмена"
+                Click="btnCancel_Click"
+                Grid.Column="1"
+                Grid.Row="3"/>
+    </Grid>
+</Window>
