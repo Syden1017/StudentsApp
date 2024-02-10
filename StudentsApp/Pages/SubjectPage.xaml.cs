@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Linq;
+using System.Collections.Generic;
 
 using StudentsApp.Models;
 using StudentsApp.Windows;
@@ -16,6 +17,7 @@ namespace StudentsApp.Pages
     public partial class SubjectPage : Page
     {
         StudentsContext _db = new StudentsContext();
+        List<Subject> _subjects = new List<Subject>();
 
         public SubjectPage()
         {
@@ -24,10 +26,19 @@ namespace StudentsApp.Pages
             UpdateSubjectList();
         }
 
+        #region CRUD operations
         private void UpdateSubjectList()
         {
             _db.Subjects.Load();
-            lViewSubjectList.ItemsSource = _db.Subjects.ToList();
+            _subjects = _db.Subjects.ToList();
+
+            string request = txtBoxSearch.Text.
+                                          Replace(" ", "").
+                                          ToLower();
+
+            List<Subject> subjectList = SeacrhSubjects(_subjects, request);
+
+            lViewSubjectList.ItemsSource = subjectList;
         }
 
         private void ShowAddOrEditSubject(Subject subject)
@@ -52,7 +63,7 @@ namespace StudentsApp.Pages
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = 
+            MessageBoxResult result =
                 MessageBox.Show(
                     "Удалить запись?",
                     "Удаление записи",
@@ -90,5 +101,29 @@ namespace StudentsApp.Pages
 
             UpdateSubjectList();
         }
+        #endregion
+
+
+        #region Search
+        /// <summary>
+        /// Поиск предмета по коду и названию
+        /// </summary>
+        /// <param name="subjects">Список предметов для поиска</param>
+        /// <param name="request">Поисковый запрос</param>
+        /// <returns>Результат поиска</returns>
+        private List<Subject> SeacrhSubjects(List<Subject> subjects, string request)
+        {
+            return subjects.Where(s => (s.SubjectId +
+                                        s.SubjectName).
+                                            ToLower().
+                                            Contains(request)).
+                                            ToList();
+        }
+
+        private void txtBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateSubjectList();
+        }
+        #endregion
     }
 }

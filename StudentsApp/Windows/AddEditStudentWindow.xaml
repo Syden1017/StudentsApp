@@ -60,7 +60,7 @@
         </Image>
 
         <TextBlock Text="№ студ. билета:"
-               Style="{DynamicResource txtBlockAddEditStudentWindow}"
+               Style="{DynamicResource txtBlockAddEditStudentPage}"
                
                Grid.Column="2"
                Grid.Row="0"/>
@@ -70,13 +70,13 @@
                             Mask="000-00"
                             TextChanged="txtBoxStudentId_TextChanged"
                             
-                            Style="{DynamicResource txtBoxAddEditStudentWindow}"
+                            Style="{DynamicResource txtBoxAddEditStudentPage}"
                             
                             Grid.Column="3"
                             Grid.Row="0"/>
 
         <TextBlock Text="Фамилия:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
+                   Style="{DynamicResource txtBlockAddEditStudentPage}"
                    
                    Grid.Column="2"
                    Grid.Row="1"/>
@@ -85,13 +85,13 @@
                  Text="{Binding LastName}"
                  TextChanged="txtBoxLastName_TextChanged"
                  
-                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
+                 Style="{DynamicResource txtBoxAddEditStudentPage}"
                  
                  Grid.Column="3"
                  Grid.Row="1"/>
 
         <TextBlock Text="Имя:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
+                   Style="{DynamicResource txtBlockAddEditStudentPage}"
                    
                    Grid.Column="2"
                    Grid.Row="2"/>
@@ -100,13 +100,13 @@
                  Text="{Binding FirstName}"
                  TextChanged="txtBoxFirstName_TextChanged"
                  
-                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
+                 Style="{DynamicResource txtBoxAddEditStudentPage}"
                  
                  Grid.Column="3"
                  Grid.Row="2"/>
 
         <TextBlock Text="Отчество:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
+                   Style="{DynamicResource txtBlockAddEditStudentPage}"
                    
                    Grid.Column="2"
                    Grid.Row="3"/>
@@ -115,13 +115,13 @@
                  Text="{Binding MiddleName}"
                  TextChanged="txtBoxMiddleName_TextChanged"
                  
-                 Style="{DynamicResource txtBoxAddEditStudentWindow}"
+                 Style="{DynamicResource txtBoxAddEditStudentPage}"
                  
                  Grid.Column="3"
                  Grid.Row="3"/>
 
         <TextBlock Text="Дата рождения:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
+                   Style="{DynamicResource txtBlockAddEditStudentPage}"
                    
                    Grid.Column="2"
                    Grid.Row="4"/>
@@ -130,13 +130,13 @@
                     SelectedDate="{Binding BirthDate}"
                     SelectedDateChanged="dPicBirthDate_SelectedDateChanged"
                     
-                    Style="{DynamicResource dPicAddEditStudentWindow}"
+                    Style="{DynamicResource dPicAddEditStudentPage}"
                     
                     Grid.Column="3"
                     Grid.Row="4"/>
 
         <TextBlock Text="Адрес:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
+                   Style="{DynamicResource txtBlockAddEditStudentPage}"
                    
                    Grid.Column="2"
                    Grid.Row="5"/>
@@ -145,13 +145,13 @@
                  Text="{Binding Address}"
                  TextChanged="txtBoxAddress_TextChanged"
                  
-                 Style="{DynamicResource txtBoxAddressAddEditStudentWindow}"
+                 Style="{DynamicResource txtBoxAddressAddEditStudentPage}"
                  
                  Grid.Column="3"
                  Grid.Row="5"/>
 
         <TextBlock Text="Номер телефона:"
-                   Style="{DynamicResource txtBlockAddEditStudentWindow}"
+                   Style="{DynamicResource txtBlockAddEditStudentPage}"
                    
                    Grid.Column="2"
                    Grid.Row="6"/>
@@ -170,7 +170,7 @@
         <Button x:Name="btnSave"
                 Click="btnSave_Click"
                 Content="Сохранить"
-                Style="{DynamicResource btnAddEditStudentWindow}"
+                Style="{DynamicResource btnAddEditStudentPage}"
                 
                 Grid.Column="0"
                 Grid.Row="7"
@@ -180,7 +180,7 @@
                 Click="btnCancel_Click"
                 Content="Отмена"
                 
-                Style="{DynamicResource btnAddEditStudentWindowPrimary}"
+                Style="{DynamicResource btnAddEditStudentPagePrimary}"
                 
                 Grid.Column="2"
                 Grid.Row="7"

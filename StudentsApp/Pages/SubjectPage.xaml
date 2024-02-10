@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StudentsApp.Pages"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       
       d:DesignHeight="500" 
@@ -11,7 +12,7 @@
       
       Title="Список предметов">
 
-    <Grid>
+    <Grid Style="{DynamicResource gSubjectPage}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
@@ -22,14 +23,33 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Панель поиска, фильтрации и сортировки -->
+        <Grid Grid.Column="0"
+              Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Поиск -->
+            <xctk:WatermarkTextBox x:Name="txtBoxSearch"
+                                   Watermark="Поиск &#128269;"
+                                   Style="{DynamicResource txtBoxSubjectPageSearch}"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   TextChanged="txtBoxSearch_TextChanged"/>
+        </Grid>
+        
         <Button x:Name="btnAdd"
                 Click="btnAdd_Click"
                 Content="+"
-                FontSize="16"
+                Style="{DynamicResource btnSubjectPage}"
                 Grid.Column="1"
                 Grid.Row="0"/>
 
         <ListView x:Name="lViewSubjectList"
+                  Style="{DynamicResource lViewSubjectPage}"
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="2">
@@ -38,18 +58,24 @@
                     <GridView.Columns>
                         <GridViewColumn Header="SubjectID"
                                         DisplayMemberBinding="{Binding
-                                        Path=SubjectId}"/>
+                                        Path=SubjectId}"
+                                        Width="110"
+                                        HeaderContainerStyle="{DynamicResource gViewColumnHeaderSubjectPage}"/>
 
                         <GridViewColumn Header="SubjectName"
                                         DisplayMemberBinding="{Binding
                                         Path=SubjectName}"
-                                        Width="150"/>
+                                        Width="350"
+                                        HeaderContainerStyle="{DynamicResource gViewColumnHeaderSubjectPage}"/>
 
                         <GridViewColumn Header="TotalHours"
                                         DisplayMemberBinding="{Binding
-                                        Path=TotalHours}"/>
+                                        Path=TotalHours}"
+                                        Width="100"
+                                        HeaderContainerStyle="{DynamicResource gViewColumnHeaderSubjectPage}"/>
 
-                        <GridViewColumn Width="35">
+                        <GridViewColumn Width="35"
+                                        HeaderContainerStyle="{DynamicResource gViewColumnHeaderSubjectPage}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="btnEdit"
@@ -59,7 +85,8 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="35">
+                        <GridViewColumn Width="35"
+                                        HeaderContainerStyle="{DynamicResource gViewColumnHeaderSubjectPage}">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="btnDelete"

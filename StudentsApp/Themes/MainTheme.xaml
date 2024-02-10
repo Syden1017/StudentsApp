@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     
-    <!--#region MainWindow Styles-->
-    <Style x:Key="gMain"
+    <!--#region StudentPage Styles-->
+    <Style x:Key="gStudentPage"
            TargetType="Grid">
         <Style.Setters>
             <Setter Property="Background"
@@ -11,7 +11,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="btnMain"
+    <Style x:Key="btnStudentPage"
            TargetType="Button">
         <Style.Setters>
             <Setter Property="Background"
@@ -37,7 +37,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBlockFilter"
+    <Style x:Key="txtBlockStudentPageFilter"
            TargetType="TextBlock">
         <Style.Setters>
             <Setter Property="VerticalAlignment"
@@ -51,16 +51,16 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBlockSort"
+    <Style x:Key="txtBlockStudentPageSort"
            TargetType="TextBlock"
-           BasedOn="{StaticResource txtBlockFilter}">
+           BasedOn="{StaticResource txtBlockStudentPageFilter}">
         <Style.Setters>
             <Setter Property="Margin"
                     Value="5"/>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBoxSearch"
+    <Style x:Key="txtBoxStudentPageSearch"
            TargetType="TextBox">
         <Style.Setters>
             <Setter Property="HorizontalContentAlignment"
@@ -77,7 +77,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="btnMovePage"
+    <Style x:Key="btnMoveStudentPage"
            TargetType="Button">
         <Style.Setters>
             <Setter Property="Background"
@@ -107,7 +107,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBoxCurrentPage"
+    <Style x:Key="txtBoxCurrentStudentPage"
            TargetType="TextBox">
         <Style.Setters>
             <Setter Property="Width"
@@ -130,9 +130,9 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBoxTotalPage"
+    <Style x:Key="txtBoxTotalStudentPage"
            TargetType="TextBox"
-           BasedOn="{StaticResource txtBoxCurrentPage}">
+           BasedOn="{StaticResource txtBoxCurrentStudentPage}">
         <Style.Setters>
             <Setter Property="IsReadOnly"
                     Value="True"/>
@@ -141,10 +141,99 @@
                     Value="0 0 2 0"/>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="txtBlockSeparator"
+           TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="5"/>
+            
+            <Setter Property="FontSize"
+                    Value="24"/>
+
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+        </Style.Setters>
+    </Style>
     <!--#endregion-->
     
-    <!--#region AddEditStudentWindow Styles-->
-    <Style x:Key="txtBlockAddEditStudentWindow"
+    <!--#region SubjectPage Styles-->
+    <Style x:Key="gSubjectPage"
+           TargetType="Grid">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#FBED9E"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnSubjectPage"
+       TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#FBED9E"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="FontSize"
+                    Value="16"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="lViewSubjectPage"
+           TargetType="ListView">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#fbffa0"/>
+
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                    Value="Disabled"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="gViewColumnHeaderSubjectPage"
+           TargetType="GridViewColumnHeader">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#fbffa0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="txtBoxSubjectPageSearch"
+           TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Right"/>
+
+            <Setter Property="Background"
+                    Value="#FDF7D7"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#000"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0.5"/>
+        </Style.Setters>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region AddEditStudentPage Styles-->
+    <Style x:Key="txtBlockAddEditStudentPage"
            TargetType="TextBlock">
         <Style.Setters>
             <Setter Property="VerticalAlignment"
@@ -158,7 +247,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBoxAddEditStudentWindow"
+    <Style x:Key="txtBoxAddEditStudentPage"
            TargetType="TextBox">
         <Style.Setters>
             <Setter Property="Margin"
@@ -178,7 +267,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="txtBoxAddressAddEditStudentWindow"
+    <Style x:Key="txtBoxAddressAddEditStudentPage"
            TargetType="TextBox">
         <Style.Setters>
             <Setter Property="Margin"
@@ -198,7 +287,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="dPicAddEditStudentWindow"
+    <Style x:Key="dPicAddEditStudentPage"
            TargetType="DatePicker">
         <Style.Setters>
             <Setter Property="Margin"
@@ -218,7 +307,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="btnAddEditStudentWindow"
+    <Style x:Key="btnAddEditStudentPage"
            TargetType="Button">
         <Style.Setters>
             <Setter Property="Cursor"
@@ -252,9 +341,9 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="btnAddEditStudentWindowPrimary"
+    <Style x:Key="btnAddEditStudentPagePrimary"
            TargetType="Button"
-           BasedOn="{StaticResource btnAddEditStudentWindow}">
+           BasedOn="{StaticResource btnAddEditStudentPage}">
         <Style.Setters>
             <Setter Property="Background"
                     Value="#F6F6F6"/>
