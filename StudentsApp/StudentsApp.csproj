@@ -9,6 +9,9 @@
 
   <ItemGroup>
     <None Remove="Images\1C.png" />
+    <None Remove="Images\exit.png" />
+    <None Remove="Images\maximize.png" />
+    <None Remove="Images\minimize.png" />
     <None Remove="Images\student.png" />
   </ItemGroup>
 
@@ -28,6 +31,15 @@
 
   <ItemGroup>
     <Resource Include="Images\1C.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\exit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\maximize.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\minimize.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\student.png">

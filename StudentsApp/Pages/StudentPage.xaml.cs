@@ -17,15 +17,15 @@ namespace StudentsApp.Pages
     public partial class StudentPage : Page
     {
         // Поле фильтрации
-        const int FILTER_BY_ADMISSION_YEAR = 1;     // Фильтр по году поступления
-        const int FILTER_BY_BIRTH_YEAR = 2;     // Фильтр по году рождения
+        const int FILTER_BY_ADMISSION_YEAR = 1;         // Фильтр по году поступления
+        const int FILTER_BY_BIRTH_YEAR     = 2;         // Фильтр по году рождения
 
         // Поле сортировки
-        const int SORT_BY_STUDENT_ID = 0,        // Сортировка по № студенческого билета
-                  SORT_BY_LAST_NAME = 1,        // Сортировка по фамилии
-                  SORT_BY_FIRST_NAME = 2,        // Соортировка по имени
+        const int SORT_BY_STUDENT_ID  = 0,        // Сортировка по № студенческого билета
+                  SORT_BY_LAST_NAME   = 1,        // Сортировка по фамилии
+                  SORT_BY_FIRST_NAME  = 2,        // Соортировка по имени
                   SORT_BY_MIDDLE_NAME = 3,        // Сортировка по отчеству
-                  SORT_BY_BIRTH_DATE = 4;        // Сортировка по дате рождения
+                  SORT_BY_BIRTH_DATE  = 4;        // Сортировка по дате рождения
 
         // Тип сортировки
         const int ASC_SORT = 0;    // Сортировка по возрастанию

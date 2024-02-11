@@ -16,31 +16,80 @@
         Width="900"
         
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
         
         Icon="\Images\1C.png">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="25"/>
-        </Grid.ColumnDefinitions>
+    <Border>
+        <Grid Background="#FBED9E">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Button x:Name="btnBack"
-                Click="btnBack_Click"
-                Content="&#129120;"
-                Grid.Column="1"
-                Grid.Row="0"/>
+            <StackPanel Style="{DynamicResource stcPanelMain}"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="5">
 
-        <Frame x:Name="frmMain"
-               ContentRendered="frmMain_ContentRendered"
-               NavigationUIVisibility="Hidden"
-               Grid.Column="0"
-               Grid.Row="1"
-               Grid.ColumnSpan="2"/>
-    </Grid>
+                <Image Source="\Images\1C.png"
+                       Width="35"/>
+            </StackPanel>
+
+            <Button x:Name="btnMinimize"
+                    Click="btnMinimize_Click"
+                    Style="{DynamicResource btnMain}"
+                    Grid.Column="1"
+                    Grid.Row="0">
+                <Button.Content>
+                    <Image Source="\Images\minimize.png"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btnMaximize"
+                    Click="btnMaximize_Click"
+                    Style="{DynamicResource btnMain}"
+                    Grid.Column="2"
+                    Grid.Row="0">
+                <Button.Content>
+                    <Image Source="\Images\maximize.png"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btnExit"
+                    Click="btnExit_Click"
+                    Style="{DynamicResource btnMain}"
+                    Grid.Column="3"
+                    Grid.Row="0">
+                <Button.Content>
+                    <Image Source="\Images\exit.png"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btnBack"
+                    Click="btnBack_Click"
+                    Content="&#129120;"
+                    Style="{DynamicResource btnBack}"
+                    Grid.Column="3"
+                    Grid.Row="1"/>
+
+            <Frame x:Name="frmMain"
+                   ContentRendered="frmMain_ContentRendered"
+                   NavigationUIVisibility="Hidden"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   Grid.ColumnSpan="4"/>
+        </Grid>
+    </Border>
 </Window>

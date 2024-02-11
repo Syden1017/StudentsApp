@@ -39,8 +39,94 @@
                                    Grid.Column="0"
                                    Grid.Row="0"
                                    TextChanged="txtBoxSearch_TextChanged"/>
+
+            <!-- Фильтрация -->
+            <Grid Grid.Column="1"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Поле: "
+                           Style="{DynamicResource txtBlockSubjectPageFilter}"
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxFilterField"
+                          SelectionChanged="cmbBoxFilterField_SelectionChanged"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
+                          Grid.Column="1"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Не выбрано"/>
+                        <TextBlock Text="Код предмета"/>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock Text="Значение: "
+                           Style="{DynamicResource txtBlockSubjectPageFilter}"
+                           Grid.Column="2"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxFilterType"
+                          SelectionChanged="cmbBoxFilterType_SelectionChanged"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
+                          Grid.Column="3"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Не задано"/>
+                    </ComboBox.Items>
+                </ComboBox>
+            </Grid>
+
+            <!-- Сортировка -->
+            <Grid Grid.Column="2"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Поле: "
+                           Style="{DynamicResource txtBlockSubjectPageFilter}"
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxSortField"
+                          SelectionChanged="cmbBoxSortField_SelectionChanged"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
+                          Grid.Column="1"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="Код предмета"/>
+                        <TextBlock Text="Название предмета"/>
+                        <TextBlock Text="Количество часов"/>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock Text="Тип: "
+                           Style="{DynamicResource txtBlockSubjectPageFilter}"
+                           Grid.Column="2"
+                           Grid.Row="0"/>
+
+                <ComboBox x:Name="cmbBoxSortType"
+                          SelectionChanged="cmbBoxSortType_SelectionChanged"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
+                          Grid.Column="3"
+                          Grid.Row="0">
+                    <ComboBox.Items>
+                        <TextBlock Text="По возрастанию"/>
+                        <TextBlock Text="По убыванию"/>
+                    </ComboBox.Items>
+                </ComboBox>
+            </Grid>
         </Grid>
-        
+
         <Button x:Name="btnAdd"
                 Click="btnAdd_Click"
                 Content="+"
@@ -65,7 +151,7 @@
                         <GridViewColumn Header="SubjectName"
                                         DisplayMemberBinding="{Binding
                                         Path=SubjectName}"
-                                        Width="350"
+                                        Width="450"
                                         HeaderContainerStyle="{DynamicResource gViewColumnHeaderSubjectPage}"/>
 
                         <GridViewColumn Header="TotalHours"

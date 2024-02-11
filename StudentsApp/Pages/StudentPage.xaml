@@ -53,9 +53,8 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Поле:"
+                <TextBlock Text="Поле: "
                            Style="{DynamicResource txtBlockStudentPageFilter}"
-                           
                            
                            Grid.Column="0"
                            Grid.Row="0"/>
@@ -63,7 +62,7 @@
                 <ComboBox x:Name="cmbBoxFilterField"
                           SelectionChanged="cmbBoxFilterField_SelectionChanged"
                           
-                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
                           
                           Grid.Column="1"
                           Grid.Row="0">
@@ -74,7 +73,7 @@
                     </ComboBox.Items>
                 </ComboBox>
 
-                <TextBlock Text="Значение:"
+                <TextBlock Text="Значение: "
                            Style="{DynamicResource txtBlockStudentPageFilter}"
                            
                            Grid.Column="2"
@@ -83,7 +82,7 @@
                 <ComboBox x:Name="cmbBoxFilterType"
                           SelectionChanged="cmbBoxFilterType_SelectionChanged"
                           
-                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
                           
                           Grid.Column="3"
                           Grid.Row="0">
@@ -103,7 +102,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Поле:"
+                <TextBlock Text="Поле: "
                        
                            Style="{DynamicResource txtBlockStudentPageSort}"
                            
@@ -113,7 +112,7 @@
                 <ComboBox x:Name="cmbBoxSortField"
                           SelectionChanged="cmbBoxSortField_SelectionChanged"
                           
-                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
                           
                           Grid.Column="1"
                           Grid.Row="0">
@@ -126,7 +125,7 @@
                     </ComboBox.Items>
                 </ComboBox>
 
-                <TextBlock Text="Тип:"
+                <TextBlock Text="Тип: "
                            Style="{DynamicResource txtBlockStudentPageSort}"
                            
                            Grid.Column="2"
@@ -135,7 +134,7 @@
                 <ComboBox x:Name="cmbBoxSortType"
                           SelectionChanged="cmbBoxSortType_SelectionChanged"
                           
-                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
                           
                           Grid.Column="3"
                           Grid.Row="0">
@@ -364,7 +363,7 @@
 
                 <ComboBox x:Name="cmbBoxStudentCount"
                           SelectionChanged="cmbBoxStudentCount_SelectionChanged"
-                          Style="{DynamicResource cmbBoxFilterSortStudentCount}"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
                           Width="80">
                     <ComboBox.Items>
                         <TextBlock Text="Все"/>
