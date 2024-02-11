@@ -66,6 +66,45 @@
         </Style.Setters>
     </Style>
     <!--#endregion-->
+    
+    <!--#region MainMenu Styles-->
+    <Style x:Key="btnMainMenu"
+           TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#776900"/>
+
+            <Setter Property="BorderThickness"
+                    Value=".8"/>
+
+            <Setter Property="Background"
+                    Value="#FCFF16"/>
+
+            <Setter Property="Margin"
+                    Value="15"/>
+
+            <Setter Property="FontSize"
+                    Value="24"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    <!--#endregion-->
 
     <!--#region StudentPage Styles-->
     <Style x:Key="gStudentPage"

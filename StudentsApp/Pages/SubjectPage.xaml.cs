@@ -205,7 +205,8 @@ namespace StudentsApp.Pages
                 switch (filterField)
                 {
                     case FILTER_BY_SUBJECT_ID:
-                        subjects = subjects.Where(s => s.SubjectId.Contains(subjectId.ToString())).ToList();
+                        subjects = subjects.Where(s => s.SubjectId.Contains(subjectId.ToString().
+                                                                                      Remove(3, 5) + ".")).ToList();
 
                         break;
 
