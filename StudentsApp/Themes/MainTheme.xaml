@@ -88,20 +88,6 @@
 
             <Setter Property="FontSize"
                     Value="24"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="20">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style.Setters>
     </Style>
     <!--#endregion-->

@@ -63,13 +63,18 @@ namespace StudentsApp.Pages
                 int.TryParse(cmbBoxFilterType.SelectedValue.ToString(), out subjectId);
             }
 
-            int filterFiled = cmbBoxFilterField.SelectedIndex;
+            int filterFiled = cmbBoxFilterField.SelectedIndex,
+                sortField   = cmbBoxSortField.SelectedIndex,
+                sortType    = cmbBoxSortType.SelectedIndex;
 
-            List<Subject> subjectList = SearchSubjects(
-                                            FilterSubjects(_subjects, 
-                                                           filterFiled, 
-                                                           subjectId),
-                                                       request);
+            List<Subject> subjectList = SortSubjects(
+                                            SearchSubjects(
+                                                FilterSubjects(_subjects,
+                                                               filterFiled,
+                                                               subjectId),
+                                                           request),
+                                                     sortField,
+                                                     sortType);
 
             lViewSubjectList.ItemsSource = subjectList;
         }
@@ -77,7 +82,7 @@ namespace StudentsApp.Pages
         private void ShowAddOrEditSubject(Subject subject)
         {
             AddEditSubjectWindow addEditSubjectWindow = new AddEditSubjectWindow(subject);
-            addEditSubjectWindow.Show();
+            addEditSubjectWindow.ShowDialog();
 
             UpdateSubjectList();
         }
@@ -198,6 +203,13 @@ namespace StudentsApp.Pages
             filterType.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Фильтрация списка предметов по коду предмета
+        /// </summary>
+        /// <param name="subjects">Список предметов для фильтрации</param>
+        /// <param name="filterField">Номер поля для фильтрации</param>
+        /// <param name="subjectId">Значение кода фильтрации</param>
+        /// <returns>Результаты фильтрации</returns>
         private List<Subject> FilterSubjects(List<Subject> subjects, int filterField, int subjectId)
         {
             if (subjectId != 0)
@@ -205,8 +217,8 @@ namespace StudentsApp.Pages
                 switch (filterField)
                 {
                     case FILTER_BY_SUBJECT_ID:
-                        subjects = subjects.Where(s => s.SubjectId.Contains(subjectId.ToString().
-                                                                                      Remove(3, 5) + ".")).ToList();
+                        subjects = subjects.Where(s => s.SubjectId.Contains("." + subjectId.ToString().
+                                                                                            Remove(0, 3))).ToList();
 
                         break;
 
@@ -241,14 +253,48 @@ namespace StudentsApp.Pages
         #endregion
 
         #region Sort
+        /// <summary>
+        /// Сортировка списка предметов
+        /// </summary>
+        /// <param name="subjects">Список предметов для сортировки</param>
+        /// <param name="sortField">Номер поля сортировки</param>
+        /// <param name="sortType">Номер типа сортировки</param>
+        /// <returns>Отсортированный список</returns>
+        private List<Subject> SortSubjects(List<Subject> subjects, int sortField, int sortType)
+        {
+            Func<Subject, object> sortExpression;
+
+            switch (sortField)
+            {
+                case SORT_BY_SUBJECT_ID:
+                    sortExpression = s => s.SubjectId;
+                    break;
+
+                case SORT_BY_SUBJECT_NAME:
+                    sortExpression = s => s.SubjectName;
+                    break;
+
+                case SORT_BY_TOTAL_HOURS:
+                    sortExpression = s => s.TotalHours;
+                    break;
+
+                default:
+                    sortExpression = s => s.SubjectId;
+                    break;
+            }
+
+            return sortType == ASC_SORT ? subjects.OrderBy(sortExpression).ToList() :
+                                          subjects.OrderByDescending(sortExpression).ToList();
+        }
+
         private void cmbBoxSortField_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateSubjectList();
         }
 
         private void cmbBoxSortType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateSubjectList();
         }
         #endregion
     }
