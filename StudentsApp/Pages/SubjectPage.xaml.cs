@@ -218,8 +218,7 @@ namespace StudentsApp.Pages
                 {
                     case FILTER_BY_SUBJECT_ID:
                         subjects = subjects.Where(s => s.SubjectId.Contains("." + subjectId.ToString().
-                                                                                            Remove(0, 3))).ToList();
-
+                                                                                            Remove(4, 3))).ToList();
                         break;
 
                     default:
