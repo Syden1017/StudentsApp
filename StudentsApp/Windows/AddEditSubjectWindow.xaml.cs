@@ -29,6 +29,8 @@ namespace StudentsApp.Windows
             if (selectedSubject != null)
             {
                 _currentSubject = selectedSubject;
+
+                txtBoxSubjectId.IsEnabled = false;
             }
             else
             {

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+using StudentsApp.Models;
+using StudentsApp.Windows;
 
 namespace StudentsApp.Pages
 {
@@ -20,9 +15,80 @@ namespace StudentsApp.Pages
     /// </summary>
     public partial class MarksPage : Page
     {
+        StudentsContext _db = new StudentsContext();
+
+
         public MarksPage()
         {
             InitializeComponent();
+
+            _db.StudentsSuccesses.Load();
+            dGridMarks.ItemsSource = _db.StudentsSuccesses.ToList();
+        }
+
+        private void UpdateMarks()
+        {
+        }
+
+        private void ShowAddOrEditWindow(StudentsSuccess mark)
+        {
+            AddEditMarksWindow addEditMarksWindow = new AddEditMarksWindow(mark);
+            addEditMarksWindow.ShowDialog();
+
+            UpdateMarks();
+        }
+
+        private void btnAddMark_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAddOrEditWindow(null);
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            StudentsSuccess editedMark = (sender as Button).DataContext as StudentsSuccess;
+
+            ShowAddOrEditWindow(editedMark);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result =
+                MessageBox.Show(
+                    "Вы действительно хотите удалить запись?",
+                    "Удаление записи",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                    );
+
+            if ( result == MessageBoxResult.Yes )
+            {
+                try
+                {
+                    StudentsSuccess? deletedMark = (sender as Button).DataContext as StudentsSuccess;
+
+                    _db.StudentsSuccesses.Remove(deletedMark);
+
+                    MessageBox.Show(
+                        "Запись удалена",
+                        "Информация",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                        );
+
+                    _db.SaveChanges();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show(
+                        "Выберите запись для удаления",
+                        "Предупреждение",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                        );
+                }
+            }
+
+            UpdateMarks();
         }
     }
 }

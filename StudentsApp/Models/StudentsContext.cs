@@ -17,6 +17,8 @@ public partial class StudentsContext : DbContext
 
     public virtual DbSet<Student> Students { get; set; }
 
+    public virtual DbSet<StudentsSuccess> StudentsSuccesses { get; set; }
+
     public virtual DbSet<Subject> Subjects { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,6 +48,33 @@ public partial class StudentsContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .IsFixedLength();
+            entity.Property(e => e.Photo).HasColumnName("PHOTO");
+        });
+
+        modelBuilder.Entity<StudentsSuccess>(entity =>
+        {
+            entity.HasKey(e => new { e.StudentId, e.SubjectId, e.ExamDate });
+
+            entity.ToTable("StudentsSuccess");
+
+            entity.Property(e => e.StudentId)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("StudentID");
+            entity.Property(e => e.SubjectId)
+                .HasMaxLength(9)
+                .HasColumnName("SubjectID");
+            entity.Property(e => e.ExamDate).HasColumnType("date");
+            entity.Property(e => e.Evaluation).HasMaxLength(10);
+
+            entity.HasOne(d => d.Student).WithMany(p => p.StudentsSuccesses)
+                .HasForeignKey(d => d.StudentId)
+                .HasConstraintName("FK_StudentsSuccess_StudentID");
+
+            entity.HasOne(d => d.Subject).WithMany(p => p.StudentsSuccesses)
+                .HasForeignKey(d => d.SubjectId)
+                .HasConstraintName("FK_StudentsSuccess_SubjectName");
         });
 
         modelBuilder.Entity<Subject>(entity =>
