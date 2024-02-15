@@ -21,8 +21,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="btnAddMark"
-                Click="btnAddMark_Click"
+        <Button x:Name="btnAdd"
+                Click="btnAdd_Click"
                 Content="+"
                 Grid.Column="1"
                 Grid.Row="0"/>
@@ -35,42 +35,40 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   CanUserResizeRows="False"
-                  CanUserResizeColumns="False"
                   CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
                   CanUserSortColumns="False"
                   
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Номер студенческого">
+                <DataGridTemplateColumn Header="Студент (№ студенческого)">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding StudentId}"
-                                     IsReadOnly="True"/>
+                            <TextBox Text="{Binding StudentId}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Название предмета">
+                <DataGridTemplateColumn Header="Предмет (код предмета)">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding SubjectId}"
-                                     IsReadOnly="True"/>
+                            <TextBox Text="{Binding SubjectId}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Оценка по предмету">
+                <DataGridTemplateColumn Header="Оценка"
+                                        Width="70">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding Evaluation}"
-                                     IsReadOnly="True"/>
+                            <TextBox Text="{Binding Evaluation}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Дата экзамена">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding ExamDate}">
@@ -85,7 +83,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="30">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnEdit"
@@ -95,7 +93,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="30">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnDelete"

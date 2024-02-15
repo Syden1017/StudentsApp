@@ -23,7 +23,7 @@ public partial class StudentsContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress; Database=Students; User=ИСП-32; Password=1234567890; Encrypt=false");
+        => optionsBuilder.UseSqlServer("Server=Syden1810; Database=Students; Integrated Security=true; Encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -48,15 +48,16 @@ public partial class StudentsContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .IsFixedLength();
-            entity.Property(e => e.Photo).HasColumnName("PHOTO");
         });
 
         modelBuilder.Entity<StudentsSuccess>(entity =>
         {
-            entity.HasKey(e => new { e.StudentId, e.SubjectId, e.ExamDate });
+            entity
+                .HasNoKey()
+                .ToTable("StudentsSuccess");
 
-            entity.ToTable("StudentsSuccess");
-
+            entity.Property(e => e.Evaluation).HasMaxLength(10);
+            entity.Property(e => e.ExamDate).HasColumnType("date");
             entity.Property(e => e.StudentId)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -65,14 +66,12 @@ public partial class StudentsContext : DbContext
             entity.Property(e => e.SubjectId)
                 .HasMaxLength(9)
                 .HasColumnName("SubjectID");
-            entity.Property(e => e.ExamDate).HasColumnType("date");
-            entity.Property(e => e.Evaluation).HasMaxLength(10);
 
-            entity.HasOne(d => d.Student).WithMany(p => p.StudentsSuccesses)
+            entity.HasOne(d => d.Student).WithMany()
                 .HasForeignKey(d => d.StudentId)
                 .HasConstraintName("FK_StudentsSuccess_StudentID");
 
-            entity.HasOne(d => d.Subject).WithMany(p => p.StudentsSuccesses)
+            entity.HasOne(d => d.Subject).WithMany()
                 .HasForeignKey(d => d.SubjectId)
                 .HasConstraintName("FK_StudentsSuccess_SubjectName");
         });

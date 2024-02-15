@@ -17,17 +17,19 @@ namespace StudentsApp.Pages
     {
         StudentsContext _db = new StudentsContext();
 
-
         public MarksPage()
         {
             InitializeComponent();
 
-            _db.StudentsSuccesses.Load();
-            dGridMarks.ItemsSource = _db.StudentsSuccesses.ToList();
+            UpdateMarks();
         }
 
+        #region CRUD operations
         private void UpdateMarks()
         {
+            _db.StudentsSuccesses.Load();
+
+            dGridMarks.ItemsSource = _db.StudentsSuccesses.ToList();
         }
 
         private void ShowAddOrEditWindow(StudentsSuccess mark)
@@ -38,14 +40,14 @@ namespace StudentsApp.Pages
             UpdateMarks();
         }
 
-        private void btnAddMark_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             ShowAddOrEditWindow(null);
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            StudentsSuccess editedMark = (sender as Button).DataContext as StudentsSuccess;
+            StudentsSuccess? editedMark = (sender as Button).DataContext as StudentsSuccess;
 
             ShowAddOrEditWindow(editedMark);
         }
@@ -54,13 +56,13 @@ namespace StudentsApp.Pages
         {
             MessageBoxResult result =
                 MessageBox.Show(
-                    "Вы действительно хотите удалить запись?",
+                    "Удалить запись?",
                     "Удаление записи",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning
                     );
 
-            if ( result == MessageBoxResult.Yes )
+            if (result == MessageBoxResult.Yes)
             {
                 try
                 {
@@ -90,5 +92,6 @@ namespace StudentsApp.Pages
 
             UpdateMarks();
         }
+        #endregion
     }
 }

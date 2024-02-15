@@ -20,6 +20,4 @@ public partial class Student
     public string PhoneNumber { get; set; } = null!;
 
     public byte[]? Photo { get; set; }
-
-    public virtual ICollection<StudentsSuccess> StudentsSuccesses { get; set; } = new List<StudentsSuccess>();
 }

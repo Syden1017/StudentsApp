@@ -10,6 +10,4 @@ public partial class Subject
     public string SubjectName { get; set; } = null!;
 
     public int? TotalHours { get; set; }
-
-    public virtual ICollection<StudentsSuccess> StudentsSuccesses { get; set; } = new List<StudentsSuccess>();
 }

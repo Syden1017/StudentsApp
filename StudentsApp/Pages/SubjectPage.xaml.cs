@@ -94,7 +94,7 @@ namespace StudentsApp.Pages
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            Subject editedSubject = (sender as Button).DataContext as Subject;
+            Subject? editedSubject = (sender as Button).DataContext as Subject;
 
             ShowAddOrEditSubject(editedSubject);
         }
