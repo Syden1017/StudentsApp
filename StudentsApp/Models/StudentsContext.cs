@@ -48,6 +48,7 @@ public partial class StudentsContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .IsFixedLength();
+            entity.Property(e => e.Photo).HasColumnName("PHOTO");
         });
 
         modelBuilder.Entity<StudentsSuccess>(entity =>
