@@ -455,6 +455,184 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region AddEditSubjectPage-->
+    <Style x:Key="txtBlockAddEditSubjectPage"
+           TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Right"/>
+
+            <Setter Property="Margin"
+                    Value="0 0 5 0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="txtBoxAddEditSubjectPage"
+           TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="10"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D7D7D7"/>
+
+            <Setter Property="Background"
+                    Value="#FDF7D7"/>
+
+            <Setter Property="FontSize"
+                    Value="12"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnAddEditSubjectPage"
+           TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#776900"/>
+
+            <Setter Property="BorderThickness"
+                    Value=".8"/>
+
+            <Setter Property="Background"
+                    Value="#FCFF16"/>
+
+            <Setter Property="Margin"
+                    Value="7"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnAddEditSubjectPagePrimary"
+           TargetType="Button"
+           BasedOn="{StaticResource btnAddEditSubjectPage}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#F6F6F6"/>
+        </Style.Setters>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region AddEditMarksPage-->
+    <Style x:Key="txtBlockAddEditMarksPage"
+           TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Right"/>
+
+            <Setter Property="Margin"
+                    Value="0 0 5 0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="txtBoxAddEditMarksPage"
+           TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="12"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D7D7D7"/>
+
+            <Setter Property="Background"
+                    Value="#FDF7D7"/>
+
+            <Setter Property="FontSize"
+                    Value="12"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="dPicAddEditMarksPage"
+           TargetType="DatePicker">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="12"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D7D7D7"/>
+
+            <Setter Property="Background"
+                    Value="#FDF7D7"/>
+
+            <Setter Property="FontSize"
+                    Value="12"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnAddEditMarksPage"
+           TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#776900"/>
+
+            <Setter Property="BorderThickness"
+                    Value=".8"/>
+
+            <Setter Property="Background"
+                    Value="#FCFF16"/>
+
+            <Setter Property="Margin"
+                    Value="10"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="btnAddEditMarksPagePrimary"
+           TargetType="Button"
+           BasedOn="{StaticResource btnAddEditMarksPage}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="#F6F6F6"/>
+        </Style.Setters>
+    </Style>
+    <!--#endregion-->
+
     <!--#region ComboBoxFilterSortCount Styles-->
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">

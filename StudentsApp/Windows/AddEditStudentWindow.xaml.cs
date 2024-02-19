@@ -70,6 +70,18 @@ namespace StudentsApp.Windows
         }
 
         /// <summary>
+        /// Загрузка окна
+        /// </summary>
+        private void addEditWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (dPicBirthDate.SelectedDate == DateTime.MinValue)
+            {
+                dPicBirthDate.SelectedDate = new DateTime(2000, 1, 1);
+            }
+        }
+
+        #region Validation
+        /// <summary>
         /// Валидация TextBox в соответствии с шаблоном
         /// </summary>
         /// <param name="textBox">TextBox для валидации</param>
@@ -116,17 +128,6 @@ namespace StudentsApp.Windows
             else
             {
                 datePicker.BorderBrush = Brushes.Red;
-            }
-        }
-
-        /// <summary>
-        /// Загрузка окна
-        /// </summary>
-        private void addEditWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (dPicBirthDate.SelectedDate == DateTime.MinValue)
-            {
-                dPicBirthDate.SelectedDate = new DateTime(2000, 1, 1);
             }
         }
 
@@ -192,7 +193,9 @@ namespace StudentsApp.Windows
         {
             ValidateText(txtBoxPhoneNumber, @"^\+7\(9\d{3}\)\d{3}-\d{2}-\d{2}$");
         }
+        #endregion
 
+        #region Save button
         /// <summary>
         /// Кнопка "Сохранить"
         /// </summary>
@@ -342,7 +345,9 @@ namespace StudentsApp.Windows
                     );
             }
         }
+        #endregion
 
+        #region Image Work
         /// <summary>
         /// Считывание изображения из массива байт
         /// </summary>
@@ -426,6 +431,7 @@ namespace StudentsApp.Windows
                 imgPhoto.Source = photo;
             }
         }
+        #endregion
 
         /// <summary>
         /// Кнопка "Отмена"

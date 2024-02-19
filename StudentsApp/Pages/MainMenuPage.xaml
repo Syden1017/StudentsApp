@@ -42,7 +42,7 @@
         <Button x:Name="btnMarks"
                 Click="btnMarks_Click"
                 Style="{DynamicResource btnMainMenu}"
-                Content="Оценки"
+                Content="Успеваемость"
                 Grid.Column="1"
                 Grid.Row="3"/>
     </Grid>
