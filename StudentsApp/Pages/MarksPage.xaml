@@ -11,7 +11,7 @@
       
       Title="Успеваемость студентов">
 
-    <Grid>
+    <Grid Background="#FBED9E">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
@@ -20,12 +20,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         
         <!-- Панель поиска, фильтрации и сортировки -->
         <Grid Grid.Column="0"
-              Grid.Row="0"
-              Background="#FBED9E">
+              Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2.5*"/>
@@ -226,5 +226,89 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid Grid.Column="0"
+              Grid.Row="2"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        
+                        Grid.Column="0">
+                <TextBlock Text="Оценок на странице: "/>
+
+                <ComboBox x:Name="cmbBoxMarksCount"
+                          SelectionChanged="cmbBoxMarksCount_SelectionChanged"
+                          Style="{DynamicResource cmbBoxFilterSortCount}"
+                          Width="80">
+                    <ComboBox.Items>
+                        <TextBlock Text="Все"/>
+                        <TextBlock Text="5"/>
+                        <TextBlock Text="10"/>
+                        <TextBlock Text="15"/>
+                        <TextBlock Text="20"/>
+                        <TextBlock Text="25"/>
+                        <TextBlock Text="30"/>
+                    </ComboBox.Items>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+    
+                        Grid.Column="1">
+                <Button x:Name="btnHome"
+                        Click="btnHome_Click"
+                        
+                        Content="&#10074;&#9664;&#9664;"
+                        
+                        Style="{DynamicResource btnMoveStudentPage}"/>
+
+                <Button x:Name="btnPrev"
+                        Click="btnPrev_Click"
+                        
+                        Content="&#9664;"
+                        
+                        Style="{DynamicResource btnMoveStudentPage}"/>
+
+                <TextBox x:Name="txtBoxCurrentPage"
+                         TextChanged="txtBoxCurrentPage_TextChanged"
+                         Style="{DynamicResource txtBoxCurrentStudentPage}"/>
+
+                <TextBlock Text="/"
+                           Style="{DynamicResource txtBlockSeparator}"/>
+
+                <TextBox x:Name="txtBoxTotalPage"
+                         Style="{DynamicResource txtBoxTotalStudentPage}"/>
+
+                <Button x:Name="btnNext"
+                        Click="btnNext_Click"
+                        
+                        Content="&#9654;"
+                        
+                        Style="{DynamicResource btnMoveStudentPage}"/>
+
+                <Button x:Name="btnEnd"
+                        Click="btnEnd_Click"
+                        
+                        Content="&#9654;&#9654;&#10074;"
+                        
+                        Style="{DynamicResource btnMoveStudentPage}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        
+                        Grid.Column="2">
+                <TextBlock Text="Всего оценок:"/>
+
+                <TextBlock x:Name="txtBlockMarksCount"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

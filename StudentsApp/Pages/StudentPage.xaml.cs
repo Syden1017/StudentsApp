@@ -17,8 +17,8 @@ namespace StudentsApp.Pages
     public partial class StudentPage : Page
     {
         // Поле фильтрации
-        const int FILTER_BY_ADMISSION_YEAR = 1;         // Фильтр по году поступления
-        const int FILTER_BY_BIRTH_YEAR     = 2;         // Фильтр по году рождения
+        const int FILTER_BY_ADMISSION_YEAR = 1,         // Фильтр по году поступления
+                  FILTER_BY_BIRTH_YEAR     = 2;         // Фильтр по году рождения
 
         // Поле сортировки
         const int SORT_BY_STUDENT_ID  = 0,        // Сортировка по № студенческого билета

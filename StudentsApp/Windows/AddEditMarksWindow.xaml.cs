@@ -82,11 +82,6 @@ namespace StudentsApp.Windows
             #endregion
 
             #region Оценка
-            if (string.IsNullOrWhiteSpace(_currentMark.Evaluation) ||
-                string.IsNullOrEmpty(_currentMark.Evaluation))
-            {
-                errors.AppendLine("Введите корректную оценку!");
-            }
             else if (Convert.ToInt32(_currentMark.Evaluation) < 1 &&
                      Convert.ToInt32(_currentMark.Evaluation) > 5)
             {
