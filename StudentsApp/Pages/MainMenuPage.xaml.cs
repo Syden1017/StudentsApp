@@ -31,5 +31,10 @@ namespace StudentsApp.Pages
         {
             _frame.Navigate(new MarksPage());
         }
+
+        private void btnQueries_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new QueriesPage());
+        }
     }
 }

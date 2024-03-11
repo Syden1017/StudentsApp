@@ -23,6 +23,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Button x:Name="btnStudent"
@@ -45,5 +46,12 @@
                 Content="Успеваемость"
                 Grid.Column="1"
                 Grid.Row="3"/>
+
+        <Button x:Name="btnQueries"
+                Click="btnQueries_Click"
+                Style="{DynamicResource btnMainMenu}"
+                Content="Запросы"
+                Grid.Column="1"
+                Grid.Row="4"/>
     </Grid>
 </Page>
